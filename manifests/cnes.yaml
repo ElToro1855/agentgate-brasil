@@ -1,0 +1,29 @@
+id: cnes
+name: CNES
+category: data
+subcategory: health
+description: "National Health Facility Registry — hospitals, clinics, professionals"
+descriptionPt: "Cadastro Nacional de Estabelecimentos de Saúde — hospitais, clínicas, profissionais"
+baseUrl: https://apidadosabertos.saude.gov.br/cnes
+auth:
+  type: none
+  envVars: []
+tags: [cnes, health, hospitals, clinics, professionals, brazil, free]
+status: alpha
+endpoints:
+  - name: search_facilities
+    description: "Search health facilities by name or CNES code"
+    descriptionPt: "Busca estabelecimentos de saúde por nome ou código CNES"
+    method: GET
+    path: /estabelecimentos
+    params:
+      - { name: codigo_cnes, type: string, required: false, description: "CNES code", location: query }
+      - { name: nome_fantasia, type: string, required: false, description: "Facility name", location: query }
+      - { name: codigo_uf, type: string, required: false, description: "State code", location: query }
+  - name: search_professionals
+    description: "Search health professionals"
+    descriptionPt: "Busca profissionais de saúde"
+    method: GET
+    path: /profissionais
+    params:
+      - { name: codigo_cnes, type: string, required: false, description: "Facility CNES code", location: query }

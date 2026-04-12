@@ -1,0 +1,48 @@
+id: portal-transparencia
+name: PortalTransparencia
+category: data
+subcategory: transparency
+description: "Federal Transparency Portal — government spending, contracts, salaries, grants"
+descriptionPt: "Portal da Transparência — gastos do governo, contratos, salários, convênios"
+baseUrl: https://api.portaldatransparencia.gov.br/api-de-dados
+auth:
+  type: api_key
+  envVars: [TRANSPARENCIA_API_KEY]
+  headerName: chave-api-dados
+tags: [transparency, spending, government, contracts, brazil]
+status: beta
+endpoints:
+  - name: search_contracts
+    description: "Search federal government contracts"
+    descriptionPt: "Busca contratos do governo federal"
+    method: GET
+    path: /contratos
+    params:
+      - { name: dataInicial, type: string, required: false, description: "Start date (DD/MM/YYYY)", location: query }
+      - { name: dataFinal, type: string, required: false, description: "End date", location: query }
+      - { name: pagina, type: number, required: false, description: "Page", location: query }
+  - name: search_spending
+    description: "Search government spending/expenses"
+    descriptionPt: "Busca despesas do governo"
+    method: GET
+    path: /despesas/recursos-recebidos
+    params:
+      - { name: mesAno, type: string, required: false, description: "Month/year (YYYYMM)", location: query }
+      - { name: pagina, type: number, required: false, description: "Page", location: query }
+  - name: search_server_salaries
+    description: "Search public servant salary data"
+    descriptionPt: "Busca dados salariais de servidores públicos"
+    method: GET
+    path: /servidores
+    params:
+      - { name: nome, type: string, required: false, description: "Server name", location: query }
+      - { name: cpf, type: string, required: false, description: "CPF", location: query }
+      - { name: pagina, type: number, required: false, description: "Page", location: query }
+  - name: search_grants
+    description: "Search government grants (Bolsa Família, BPC, etc.)"
+    descriptionPt: "Busca benefícios sociais (Bolsa Família, BPC, etc.)"
+    method: GET
+    path: /beneficios-cidadao
+    params:
+      - { name: mesAno, type: string, required: false, description: "Month/year (YYYYMM)", location: query }
+      - { name: pagina, type: number, required: false, description: "Page", location: query }

@@ -1,0 +1,27 @@
+id: ana
+name: ANA
+category: data
+subcategory: environmental
+description: "National Water Agency — water resources, reservoirs, river flow data"
+descriptionPt: "Agência Nacional de Águas — recursos hídricos, reservatórios, vazão de rios"
+baseUrl: https://www.snirh.gov.br/hidroweb/rest/api
+auth:
+  type: none
+  envVars: []
+tags: [ana, water, reservoirs, rivers, environment, brazil, free]
+status: alpha
+endpoints:
+  - name: list_stations
+    description: "List hydrological monitoring stations"
+    descriptionPt: "Lista estações de monitoramento hidrológico"
+    method: GET
+    path: /estacao/lista
+    params:
+      - { name: uf, type: string, required: false, description: "State (UF)", location: query }
+  - name: get_station_data
+    description: "Get data from a monitoring station"
+    descriptionPt: "Busca dados de uma estação de monitoramento"
+    method: GET
+    path: /estacao/{code}/dados
+    params:
+      - { name: code, type: string, required: true, description: "Station code", location: path }

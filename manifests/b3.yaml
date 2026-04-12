@@ -1,0 +1,25 @@
+id: b3
+name: B3
+category: data
+subcategory: economic
+description: "B3 Brazilian Stock Exchange — stock quotes, indices, market data"
+descriptionPt: "B3 Bolsa de Valores — cotações, índices, dados de mercado"
+baseUrl: https://api.b3.com.br
+auth:
+  type: none
+  envVars: []
+tags: [b3, stocks, market, ibovespa, economic, brazil, free]
+status: alpha
+endpoints:
+  - name: get_quote
+    description: "Get stock quote by ticker"
+    descriptionPt: "Busca cotação de ação por ticker"
+    method: GET
+    path: /market/quotes/{ticker}
+    params:
+      - { name: ticker, type: string, required: true, description: "Stock ticker (e.g., PETR4, VALE3)", location: path }
+  - name: get_ibovespa
+    description: "Get current Ibovespa index"
+    descriptionPt: "Busca índice Ibovespa atual"
+    method: GET
+    path: /market/indices/IBOV

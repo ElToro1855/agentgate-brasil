@@ -1,0 +1,35 @@
+id: compras-gov
+name: ComprasGov
+category: data
+subcategory: public-procurement
+description: "ComprasNet/Compras.gov — federal government procurement, bids, prices"
+descriptionPt: "ComprasNet/Compras.gov — compras governamentais, licitações, preços praticados"
+baseUrl: https://compras.dados.gov.br/fornecedores/v1
+auth:
+  type: none
+  envVars: []
+tags: [compras-gov, procurement, bids, government, prices, brazil, free]
+status: alpha
+endpoints:
+  - name: search_suppliers
+    description: "Search government suppliers"
+    descriptionPt: "Busca fornecedores do governo"
+    method: GET
+    path: /fornecedores.json
+    params:
+      - { name: cnpj, type: string, required: false, description: "Supplier CNPJ", location: query }
+      - { name: nome, type: string, required: false, description: "Supplier name", location: query }
+  - name: search_prices
+    description: "Search practiced prices in government purchases"
+    descriptionPt: "Busca preços praticados em compras governamentais"
+    method: GET
+    path: /precos_praticados.json
+    params:
+      - { name: co_material_servico, type: string, required: false, description: "Material/service code", location: query }
+  - name: search_bids
+    description: "Search government bids/tenders"
+    descriptionPt: "Busca licitações governamentais"
+    method: GET
+    path: /licitacoes.json
+    params:
+      - { name: uasg, type: string, required: false, description: "UASG code (procurement agency)", location: query }

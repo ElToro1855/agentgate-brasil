@@ -1,0 +1,29 @@
+id: tcu
+name: TCU
+category: data
+subcategory: transparency
+description: "TCU Federal Audit Court — audit reports, sanctions, responsible parties"
+descriptionPt: "TCU Tribunal de Contas da União — relatórios de auditoria, sanções, responsáveis"
+baseUrl: https://portal.tcu.gov.br/api
+auth:
+  type: none
+  envVars: []
+tags: [tcu, audit, transparency, accountability, brazil, free]
+status: alpha
+endpoints:
+  - name: search_deliberations
+    description: "Search TCU deliberations and decisions"
+    descriptionPt: "Busca deliberações e decisões do TCU"
+    method: GET
+    path: /deliberacoes
+    params:
+      - { name: query, type: string, required: false, description: "Search text", location: query }
+      - { name: ano, type: string, required: false, description: "Year", location: query }
+  - name: search_sanctioned
+    description: "Search sanctioned companies/persons (inidôneos)"
+    descriptionPt: "Busca empresas/pessoas sancionadas (inidôneos)"
+    method: GET
+    path: /inidoneos
+    params:
+      - { name: cpfCnpj, type: string, required: false, description: "CPF or CNPJ", location: query }
+      - { name: nome, type: string, required: false, description: "Name", location: query }

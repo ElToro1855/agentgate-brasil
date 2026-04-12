@@ -1,0 +1,28 @@
+id: datajud
+name: DataJud
+category: data
+subcategory: judicial
+description: "DataJud — national judicial process database, search across all courts"
+descriptionPt: "DataJud — base nacional de processos judiciais, busca em todos os tribunais"
+baseUrl: https://datajud-wiki.cnj.jus.br/api
+auth:
+  type: api_key
+  envVars: [DATAJUD_API_KEY]
+  headerName: Authorization
+tags: [datajud, judicial, courts, lawsuits, brazil]
+status: beta
+endpoints:
+  - name: search_processes
+    description: "Search judicial processes by party name or number"
+    descriptionPt: "Busca processos judiciais por nome da parte ou número"
+    method: POST
+    path: /pesquisa-publica
+    body:
+      - { name: query, type: object, required: true, description: "Elasticsearch query object" }
+  - name: get_process
+    description: "Get process details by unified number (NPU)"
+    descriptionPt: "Busca detalhes de processo por número unificado (NPU)"
+    method: GET
+    path: /processos/{npu}
+    params:
+      - { name: npu, type: string, required: true, description: "Unified process number (20 digits)", location: path }

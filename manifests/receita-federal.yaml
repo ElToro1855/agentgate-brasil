@@ -1,0 +1,20 @@
+id: receita-federal
+name: ReceitaFederal
+category: data
+subcategory: identity
+description: "Brazilian Federal Revenue Service — detailed CNPJ/CPF data, tax status"
+descriptionPt: "Receita Federal — dados detalhados de CNPJ/CPF, situação fiscal"
+baseUrl: https://receitaws.com.br/v1
+auth:
+  type: none
+  envVars: []
+tags: [receita-federal, cnpj, cpf, tax, identity, brazil, free]
+status: beta
+endpoints:
+  - name: get_cnpj_details
+    description: "Get detailed CNPJ company data from Receita Federal"
+    descriptionPt: "Busca dados detalhados de empresa por CNPJ na Receita Federal"
+    method: GET
+    path: /cnpj/{cnpj}
+    params:
+      - { name: cnpj, type: string, required: true, description: "CNPJ (14 digits)", location: path }

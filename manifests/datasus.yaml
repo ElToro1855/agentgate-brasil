@@ -1,0 +1,27 @@
+id: datasus
+name: DataSUS
+category: data
+subcategory: health
+description: "Brazilian public health data — hospitalizations, mortality, epidemiology"
+descriptionPt: "Dados de saúde pública brasileira — internações, mortalidade, epidemiologia"
+baseUrl: https://elasticsearch-saps.saude.gov.br
+auth:
+  type: none
+  envVars: []
+tags: [datasus, health, epidemiology, mortality, hospitals, brazil, free]
+status: alpha
+endpoints:
+  - name: search_hospitalizations
+    description: "Search SIH hospitalization records"
+    descriptionPt: "Busca registros de internação SIH"
+    method: GET
+    path: /desc-esus-notifica-estado-*/_search
+    params:
+      - { name: q, type: string, required: false, description: "Search query", location: query }
+  - name: get_health_indicators
+    description: "Get health indicators by state/municipality"
+    descriptionPt: "Busca indicadores de saúde por estado/município"
+    method: GET
+    path: /desc-notificacoes-esusve-*/_search
+    params:
+      - { name: q, type: string, required: false, description: "Search query", location: query }

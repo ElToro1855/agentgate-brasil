@@ -1,0 +1,27 @@
+id: serpro
+name: SERPRO
+category: data
+subcategory: identity
+description: "SERPRO — official government data services, CPF validation, CNPJ details"
+descriptionPt: "SERPRO — serviços oficiais de dados do governo, validação de CPF, detalhes de CNPJ"
+baseUrl: https://gateway.apiserpro.serpro.gov.br
+auth:
+  type: bearer
+  envVars: [SERPRO_API_KEY]
+tags: [serpro, cpf, cnpj, government, identity, brazil]
+status: beta
+endpoints:
+  - name: validate_cpf
+    description: "Validate a CPF and get holder data"
+    descriptionPt: "Valida um CPF e busca dados do titular"
+    method: GET
+    path: /consulta-cpf-df/v1/cpf/{cpf}
+    params:
+      - { name: cpf, type: string, required: true, description: "CPF (11 digits)", location: path }
+  - name: get_cnpj
+    description: "Get CNPJ details from official source"
+    descriptionPt: "Busca detalhes de CNPJ na fonte oficial"
+    method: GET
+    path: /consulta-cnpj-df/v1/cnpj/{cnpj}
+    params:
+      - { name: cnpj, type: string, required: true, description: "CNPJ (14 digits)", location: path }
