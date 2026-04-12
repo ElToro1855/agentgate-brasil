@@ -24,6 +24,22 @@ importers:
         specifier: ^4.1.0
         version: 4.1.4(vite@8.0.8)
 
+  packages/core/discovery:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../framework
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/core/framework:
     dependencies:
       '@modelcontextprotocol/sdk':
