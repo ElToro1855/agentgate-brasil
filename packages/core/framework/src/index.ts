@@ -11,3 +11,6 @@ export type {
   GovernanceConfig,
   Logger,
 } from "./types.js";
+export { createAgentGateServer } from "./server.js";
+export type { AgentGateServerConfig, AgentGateServer } from "./server.js";
+export { createLogger } from "./logger.js";
