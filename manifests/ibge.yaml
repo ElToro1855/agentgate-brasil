@@ -1,0 +1,63 @@
+id: ibge
+name: IBGE
+category: data
+subcategory: economic
+description: "Brazilian Institute of Geography and Statistics — population, states, municipalities, GDP (no auth)"
+descriptionPt: "Instituto Brasileiro de Geografia e Estatística — população, estados, municípios, PIB (sem autenticação)"
+baseUrl: https://servicodados.ibge.gov.br/api/v1
+auth:
+  type: none
+  envVars: []
+tags:
+  - ibge
+  - statistics
+  - population
+  - states
+  - municipalities
+  - brazil
+  - free
+status: ga
+endpoints:
+  - name: list_states
+    description: "List all Brazilian states (UFs)"
+    descriptionPt: "Lista todos os estados brasileiros (UFs)"
+    method: GET
+    path: /localidades/estados
+  - name: get_state
+    description: "Get state details by UF code"
+    descriptionPt: "Busca detalhes do estado por código UF"
+    method: GET
+    path: /localidades/estados/{uf}
+    params:
+      - name: uf
+        type: string
+        required: true
+        description: "UF code (e.g., SP, RJ, MG)"
+        location: path
+  - name: list_municipalities
+    description: "List all municipalities in a state"
+    descriptionPt: "Lista todos os municípios de um estado"
+    method: GET
+    path: /localidades/estados/{uf}/municipios
+    params:
+      - name: uf
+        type: string
+        required: true
+        description: "UF code"
+        location: path
+  - name: list_all_municipalities
+    description: "List all Brazilian municipalities"
+    descriptionPt: "Lista todos os municípios brasileiros"
+    method: GET
+    path: /localidades/municipios
+  - name: get_municipality
+    description: "Get municipality details by IBGE code"
+    descriptionPt: "Busca detalhes do município por código IBGE"
+    method: GET
+    path: /localidades/municipios/{id}
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "IBGE municipality code"
+        location: path

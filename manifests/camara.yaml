@@ -1,0 +1,91 @@
+id: camara
+name: Câmara dos Deputados
+category: data
+subcategory: legislative
+description: "Brazilian House of Representatives — deputies, proposals, votes, expenses (no auth)"
+descriptionPt: "Câmara dos Deputados — deputados, proposições, votações, despesas (sem autenticação)"
+baseUrl: https://dadosabertos.camara.leg.br/api/v2
+auth:
+  type: none
+  envVars: []
+tags:
+  - camara
+  - deputies
+  - legislation
+  - votes
+  - expenses
+  - government
+  - brazil
+  - free
+status: ga
+endpoints:
+  - name: list_deputies
+    description: "List current deputies with optional filters"
+    descriptionPt: "Lista deputados atuais com filtros opcionais"
+    method: GET
+    path: /deputados
+    params:
+      - name: nome
+        type: string
+        required: false
+        description: "Filter by name"
+        location: query
+      - name: siglaPartido
+        type: string
+        required: false
+        description: "Filter by party (e.g., PT, PL)"
+        location: query
+      - name: siglaUf
+        type: string
+        required: false
+        description: "Filter by state (e.g., SP, RJ)"
+        location: query
+  - name: get_deputy
+    description: "Get deputy details by ID"
+    descriptionPt: "Busca detalhes de deputado por ID"
+    method: GET
+    path: /deputados/{id}
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "Deputy ID"
+        location: path
+  - name: get_deputy_expenses
+    description: "Get a deputy's expense reports"
+    descriptionPt: "Busca relatórios de despesas de um deputado"
+    method: GET
+    path: /deputados/{id}/despesas
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "Deputy ID"
+        location: path
+  - name: list_proposals
+    description: "List legislative proposals"
+    descriptionPt: "Lista proposições legislativas"
+    method: GET
+    path: /proposicoes
+    params:
+      - name: siglaTipo
+        type: string
+        required: false
+        description: "Type (PL, PEC, MPV, etc.)"
+        location: query
+      - name: ano
+        type: string
+        required: false
+        description: "Year"
+        location: query
+  - name: get_proposal
+    description: "Get proposal details by ID"
+    descriptionPt: "Busca detalhes de proposição por ID"
+    method: GET
+    path: /proposicoes/{id}
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "Proposal ID"
+        location: path

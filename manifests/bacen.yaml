@@ -1,0 +1,67 @@
+id: bacen
+name: BACEN
+category: data
+subcategory: economic
+description: "Brazilian Central Bank API — Selic rate, IPCA inflation, exchange rates, 40K+ time series (no auth)"
+descriptionPt: "API do Banco Central — taxa Selic, IPCA, câmbio, 40K+ séries temporais (sem autenticação)"
+baseUrl: https://api.bcb.gov.br/dados/serie/bcdata.sgs
+auth:
+  type: none
+  envVars: []
+tags:
+  - bacen
+  - selic
+  - ipca
+  - exchange-rate
+  - economic
+  - brazil
+  - free
+status: ga
+endpoints:
+  - name: get_series
+    description: "Get time series data from BACEN by series code"
+    descriptionPt: "Busca dados de série temporal do BACEN por código"
+    method: GET
+    path: /{series_code}/dados
+    params:
+      - name: series_code
+        type: string
+        required: true
+        description: "Series code (e.g., 432 for Selic, 433 for IPCA)"
+        location: path
+  - name: get_series_last
+    description: "Get the last N values of a BACEN time series"
+    descriptionPt: "Busca os últimos N valores de uma série temporal do BACEN"
+    method: GET
+    path: /{series_code}/dados/ultimos/{count}
+    params:
+      - name: series_code
+        type: string
+        required: true
+        description: "Series code"
+        location: path
+      - name: count
+        type: string
+        required: true
+        description: "Number of last values"
+        location: path
+  - name: get_selic
+    description: "Get current Selic interest rate (shortcut for series 432)"
+    descriptionPt: "Busca taxa Selic atual (atalho para série 432)"
+    method: GET
+    path: /432/dados/ultimos/1
+  - name: get_ipca
+    description: "Get latest IPCA inflation index (shortcut for series 433)"
+    descriptionPt: "Busca último índice IPCA de inflação (atalho para série 433)"
+    method: GET
+    path: /433/dados/ultimos/1
+  - name: get_usd_brl
+    description: "Get latest USD/BRL exchange rate (shortcut for series 1)"
+    descriptionPt: "Busca última cotação USD/BRL (atalho para série 1)"
+    method: GET
+    path: /1/dados/ultimos/1
+  - name: get_eur_brl
+    description: "Get latest EUR/BRL exchange rate (shortcut for series 21619)"
+    descriptionPt: "Busca última cotação EUR/BRL (atalho para série 21619)"
+    method: GET
+    path: /21619/dados/ultimos/1

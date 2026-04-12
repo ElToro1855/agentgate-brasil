@@ -1,0 +1,74 @@
+id: senado
+name: Senado Federal
+category: data
+subcategory: legislative
+description: "Brazilian Federal Senate — senators, matters, votes, committees (no auth)"
+descriptionPt: "Senado Federal — senadores, matérias, votações, comissões (sem autenticação)"
+baseUrl: https://legis.senado.leg.br/dadosabertos
+auth:
+  type: none
+  envVars: []
+tags:
+  - senado
+  - senate
+  - senators
+  - legislation
+  - government
+  - brazil
+  - free
+status: ga
+endpoints:
+  - name: list_senators
+    description: "List current senators"
+    descriptionPt: "Lista senadores atuais"
+    method: GET
+    path: /senador/lista/atual
+  - name: get_senator
+    description: "Get senator details by code"
+    descriptionPt: "Busca detalhes de senador por código"
+    method: GET
+    path: /senador/{code}
+    params:
+      - name: code
+        type: string
+        required: true
+        description: "Senator code"
+        location: path
+  - name: list_matters
+    description: "List legislative matters"
+    descriptionPt: "Lista matérias legislativas"
+    method: GET
+    path: /materia/pesquisa/lista
+    params:
+      - name: sigla
+        type: string
+        required: false
+        description: "Type abbreviation (PLS, PEC, etc.)"
+        location: query
+      - name: ano
+        type: string
+        required: false
+        description: "Year"
+        location: query
+  - name: get_matter
+    description: "Get matter details by code"
+    descriptionPt: "Busca detalhes de matéria por código"
+    method: GET
+    path: /materia/{code}
+    params:
+      - name: code
+        type: string
+        required: true
+        description: "Matter code"
+        location: path
+  - name: list_votes
+    description: "List recent Senate votes"
+    descriptionPt: "Lista votações recentes do Senado"
+    method: GET
+    path: /plenario/lista/votacao/{year}
+    params:
+      - name: year
+        type: string
+        required: true
+        description: "Year"
+        location: path

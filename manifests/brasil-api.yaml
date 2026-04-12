@@ -1,0 +1,101 @@
+id: brasil-api
+name: BrasilAPI
+category: data
+subcategory: identity
+description: "Brazilian public data API — CEP, CNPJ, banks, holidays, FIPE vehicle prices, area codes (no auth required)"
+descriptionPt: "API de dados públicos brasileiros — CEP, CNPJ, bancos, feriados, tabela FIPE, DDDs (sem autenticação)"
+baseUrl: https://brasilapi.com.br/api
+auth:
+  type: none
+  envVars: []
+tags:
+  - cep
+  - cnpj
+  - brazil
+  - identity
+  - banks
+  - free
+status: ga
+endpoints:
+  - name: get_cep
+    description: "Look up address by Brazilian ZIP code (CEP)"
+    descriptionPt: "Busca endereço por CEP"
+    method: GET
+    path: /cep/v2/{cep}
+    params:
+      - name: cep
+        type: string
+        required: true
+        description: "Brazilian ZIP code (8 digits)"
+        location: path
+  - name: get_cnpj
+    description: "Look up company data by CNPJ number"
+    descriptionPt: "Busca dados de empresa por CNPJ"
+    method: GET
+    path: /cnpj/v1/{cnpj}
+    params:
+      - name: cnpj
+        type: string
+        required: true
+        description: "CNPJ number (14 digits)"
+        location: path
+  - name: list_banks
+    description: "List all Brazilian banks with codes"
+    descriptionPt: "Lista todos os bancos brasileiros com códigos"
+    method: GET
+    path: /banks/v1
+  - name: get_bank
+    description: "Get bank details by code"
+    descriptionPt: "Busca detalhes do banco por código"
+    method: GET
+    path: /banks/v1/{code}
+    params:
+      - name: code
+        type: string
+        required: true
+        description: "Bank code (3 digits)"
+        location: path
+  - name: list_holidays
+    description: "List Brazilian national holidays for a given year"
+    descriptionPt: "Lista feriados nacionais brasileiros para um dado ano"
+    method: GET
+    path: /feriados/v1/{year}
+    params:
+      - name: year
+        type: string
+        required: true
+        description: "Year (e.g., 2026)"
+        location: path
+  - name: get_ddd
+    description: "Get cities and state for a Brazilian area code (DDD)"
+    descriptionPt: "Busca cidades e estado por código de área (DDD)"
+    method: GET
+    path: /ddd/v1/{ddd}
+    params:
+      - name: ddd
+        type: string
+        required: true
+        description: "Area code (2 digits, e.g., 11 for São Paulo)"
+        location: path
+  - name: get_fipe
+    description: "Search FIPE vehicle price table by reference code"
+    descriptionPt: "Busca tabela FIPE de preços de veículos por código de referência"
+    method: GET
+    path: /fipe/preco/v1/{fipe_code}
+    params:
+      - name: fipe_code
+        type: string
+        required: true
+        description: "FIPE reference code"
+        location: path
+  - name: list_fipe_brands
+    description: "List vehicle brands from FIPE table by vehicle type"
+    descriptionPt: "Lista marcas de veículos da tabela FIPE por tipo"
+    method: GET
+    path: /fipe/marcas/v1/{vehicle_type}
+    params:
+      - name: vehicle_type
+        type: string
+        required: true
+        description: "Vehicle type: carros, motos, or caminhoes"
+        location: path
