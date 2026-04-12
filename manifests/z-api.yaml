@@ -1,0 +1,85 @@
+id: z-api
+name: Z-API
+category: commerce
+subcategory: br-communication
+description: "WhatsApp Business API — send messages, images, documents, manage contacts"
+descriptionPt: "API WhatsApp Business — envio de mensagens, imagens, documentos, gestão de contatos"
+baseUrl: https://api.z-api.io/instances
+auth:
+  type: bearer
+  envVars:
+    - ZAPI_INSTANCE_ID
+    - ZAPI_TOKEN
+tags:
+  - whatsapp
+  - messaging
+  - communication
+  - brazil
+status: beta
+endpoints:
+  - name: send_text
+    description: "Send a text message via WhatsApp"
+    descriptionPt: "Envia uma mensagem de texto via WhatsApp"
+    method: POST
+    path: /{instance_id}/token/{token}/send-text
+    body:
+      - name: phone
+        type: string
+        required: true
+        description: "Recipient phone (e.g., 5511999999999)"
+      - name: message
+        type: string
+        required: true
+        description: "Message text"
+  - name: send_image
+    description: "Send an image via WhatsApp"
+    descriptionPt: "Envia uma imagem via WhatsApp"
+    method: POST
+    path: /{instance_id}/token/{token}/send-image
+    body:
+      - name: phone
+        type: string
+        required: true
+        description: "Recipient phone"
+      - name: image
+        type: string
+        required: true
+        description: "Image URL"
+      - name: caption
+        type: string
+        required: false
+        description: "Image caption"
+  - name: send_document
+    description: "Send a document via WhatsApp"
+    descriptionPt: "Envia um documento via WhatsApp"
+    method: POST
+    path: /{instance_id}/token/{token}/send-document
+    body:
+      - name: phone
+        type: string
+        required: true
+        description: "Recipient phone"
+      - name: document
+        type: string
+        required: true
+        description: "Document URL"
+      - name: fileName
+        type: string
+        required: false
+        description: "File name"
+  - name: get_contacts
+    description: "List WhatsApp contacts"
+    descriptionPt: "Lista contatos do WhatsApp"
+    method: GET
+    path: /{instance_id}/token/{token}/contacts
+  - name: check_number
+    description: "Check if a phone number has WhatsApp"
+    descriptionPt: "Verifica se um número tem WhatsApp"
+    method: GET
+    path: /{instance_id}/token/{token}/phone-exists/{phone}
+    params:
+      - name: phone
+        type: string
+        required: true
+        description: "Phone number to check"
+        location: path

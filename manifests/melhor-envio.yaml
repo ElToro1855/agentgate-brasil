@@ -1,0 +1,93 @@
+id: melhor-envio
+name: MelhorEnvio
+category: commerce
+subcategory: br-logistics
+description: "Brazilian shipping aggregator — freight quotes, label generation, tracking across carriers"
+descriptionPt: "Agregador de fretes brasileiro — cotações, geração de etiquetas, rastreamento multi-transportadora"
+baseUrl: https://melhorenvio.com.br/api/v2/me
+auth:
+  type: bearer
+  envVars:
+    - MELHOR_ENVIO_TOKEN
+tags:
+  - shipping
+  - logistics
+  - freight
+  - tracking
+  - brazil
+status: beta
+endpoints:
+  - name: calculate_shipping
+    description: "Calculate shipping quotes for a package"
+    descriptionPt: "Calcula cotações de frete para um pacote"
+    method: POST
+    path: /shipment/calculate
+    body:
+      - name: from_postal_code
+        type: string
+        required: true
+        description: "Origin ZIP code"
+      - name: to_postal_code
+        type: string
+        required: true
+        description: "Destination ZIP code"
+      - name: width
+        type: number
+        required: true
+        description: "Package width in cm"
+      - name: height
+        type: number
+        required: true
+        description: "Package height in cm"
+      - name: length
+        type: number
+        required: true
+        description: "Package length in cm"
+      - name: weight
+        type: number
+        required: true
+        description: "Package weight in kg"
+  - name: create_shipment
+    description: "Create a shipment order"
+    descriptionPt: "Cria um pedido de envio"
+    method: POST
+    path: /cart
+    body:
+      - name: service
+        type: number
+        required: true
+        description: "Service ID from quote"
+      - name: from
+        type: object
+        required: true
+        description: "Sender details"
+      - name: to
+        type: object
+        required: true
+        description: "Recipient details"
+  - name: track_shipment
+    description: "Track a shipment by order ID"
+    descriptionPt: "Rastreia um envio pelo ID do pedido"
+    method: GET
+    path: /shipment/tracking
+    params:
+      - name: orders
+        type: string
+        required: true
+        description: "Comma-separated order IDs"
+        location: query
+  - name: generate_label
+    description: "Generate shipping label"
+    descriptionPt: "Gera etiqueta de envio"
+    method: POST
+    path: /shipment/generate
+    body:
+      - name: orders
+        type: object
+        required: true
+        description: "Array of order IDs"
+  - name: list_shipments
+    description: "List shipment orders"
+    descriptionPt: "Lista pedidos de envio"
+    method: GET
+    path: /orders

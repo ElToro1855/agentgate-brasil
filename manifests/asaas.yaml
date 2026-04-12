@@ -1,0 +1,130 @@
+id: asaas
+name: Asaas
+category: commerce
+subcategory: br-payments
+description: "Brazilian SMB payment platform — invoicing, Pix, boleto, subscriptions"
+descriptionPt: "Plataforma de pagamentos para PMEs — cobrança, Pix, boleto, assinaturas"
+baseUrl: https://api.asaas.com/v3
+auth:
+  type: bearer
+  envVars:
+    - ASAAS_API_KEY
+tags:
+  - payments
+  - pix
+  - boleto
+  - invoicing
+  - subscriptions
+  - brazil
+status: beta
+governance:
+  governedTools:
+    - create_payment
+    - create_subscription
+endpoints:
+  - name: create_payment
+    description: "Create a new payment/charge"
+    descriptionPt: "Cria uma nova cobrança"
+    method: POST
+    path: /payments
+    governed: true
+    body:
+      - name: customer
+        type: string
+        required: true
+        description: "Customer ID"
+      - name: billingType
+        type: string
+        required: true
+        description: "BOLETO, CREDIT_CARD, or PIX"
+      - name: value
+        type: number
+        required: true
+        description: "Payment amount"
+      - name: dueDate
+        type: string
+        required: true
+        description: "Due date (YYYY-MM-DD)"
+      - name: description
+        type: string
+        required: false
+        description: "Payment description"
+  - name: get_payment
+    description: "Get payment details"
+    descriptionPt: "Busca detalhes de cobrança"
+    method: GET
+    path: /payments/{id}
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "Payment ID"
+        location: path
+  - name: list_payments
+    description: "List payments with filters"
+    descriptionPt: "Lista cobranças com filtros"
+    method: GET
+    path: /payments
+    params:
+      - name: customer
+        type: string
+        required: false
+        description: "Filter by customer ID"
+        location: query
+      - name: status
+        type: string
+        required: false
+        description: "Filter by status"
+        location: query
+  - name: create_customer
+    description: "Create a new customer"
+    descriptionPt: "Cria um novo cliente"
+    method: POST
+    path: /customers
+    body:
+      - name: name
+        type: string
+        required: true
+        description: "Customer name"
+      - name: cpfCnpj
+        type: string
+        required: true
+        description: "CPF or CNPJ"
+      - name: email
+        type: string
+        required: false
+        description: "Email"
+  - name: get_pix_qrcode
+    description: "Get Pix QR code for a payment"
+    descriptionPt: "Busca QR code Pix de uma cobrança"
+    method: GET
+    path: /payments/{id}/pixQrCode
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "Payment ID"
+        location: path
+  - name: create_subscription
+    description: "Create a recurring subscription"
+    descriptionPt: "Cria uma assinatura recorrente"
+    method: POST
+    path: /subscriptions
+    governed: true
+    body:
+      - name: customer
+        type: string
+        required: true
+        description: "Customer ID"
+      - name: billingType
+        type: string
+        required: true
+        description: "CREDIT_CARD or BOLETO"
+      - name: value
+        type: number
+        required: true
+        description: "Subscription amount"
+      - name: cycle
+        type: string
+        required: true
+        description: "MONTHLY, WEEKLY, etc."

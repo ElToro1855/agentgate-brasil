@@ -1,0 +1,99 @@
+id: zoop
+name: Zoop
+category: commerce
+subcategory: br-payments
+description: "Brazilian marketplace payment processor — Pix, credit card, boleto, split payments"
+descriptionPt: "Processador de pagamentos brasileiro para marketplaces — Pix, cartão de crédito, boleto, split"
+baseUrl: https://api.zoop.ws/v1/marketplaces
+auth:
+  type: bearer
+  envVars:
+    - ZOOP_API_KEY
+tags:
+  - payments
+  - pix
+  - marketplace
+  - split
+  - brazil
+status: beta
+governance:
+  governedTools:
+    - create_pix_transaction
+    - create_card_transaction
+    - refund_transaction
+endpoints:
+  - name: create_pix_transaction
+    description: "Create a Pix payment transaction"
+    descriptionPt: "Cria uma transação de pagamento Pix"
+    method: POST
+    path: /transactions
+    governed: true
+    body:
+      - name: amount
+        type: number
+        required: true
+        description: "Amount in cents"
+      - name: currency
+        type: string
+        required: true
+        description: "Currency code (BRL)"
+      - name: payment_type
+        type: string
+        required: true
+        description: "Payment type (pix)"
+      - name: description
+        type: string
+        required: false
+        description: "Transaction description"
+  - name: create_card_transaction
+    description: "Create a credit card transaction"
+    descriptionPt: "Cria uma transação de cartão de crédito"
+    method: POST
+    path: /transactions
+    governed: true
+    body:
+      - name: amount
+        type: number
+        required: true
+        description: "Amount in cents"
+      - name: payment_type
+        type: string
+        required: true
+        description: "Payment type (credit)"
+      - name: card_id
+        type: string
+        required: true
+        description: "Tokenized card ID"
+  - name: get_transaction
+    description: "Get transaction details by ID"
+    descriptionPt: "Busca detalhes de transação por ID"
+    method: GET
+    path: /transactions/{id}
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "Transaction ID"
+        location: path
+  - name: refund_transaction
+    description: "Refund a transaction"
+    descriptionPt: "Estorna uma transação"
+    method: POST
+    path: /transactions/{id}/void
+    governed: true
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "Transaction ID"
+        location: path
+    body:
+      - name: amount
+        type: number
+        required: false
+        description: "Partial refund amount in cents (omit for full refund)"
+  - name: list_sellers
+    description: "List marketplace sellers"
+    descriptionPt: "Lista sellers do marketplace"
+    method: GET
+    path: /sellers

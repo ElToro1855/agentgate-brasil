@@ -1,0 +1,75 @@
+id: nuvem-fiscal
+name: NuvemFiscal
+category: commerce
+subcategory: br-fiscal
+description: "Brazilian electronic invoicing — NFe, NFCe, NFSe issuance and management"
+descriptionPt: "Emissão de notas fiscais eletrônicas — NFe, NFCe, NFSe"
+baseUrl: https://api.nuvemfiscal.com.br
+auth:
+  type: bearer
+  envVars:
+    - NUVEM_FISCAL_API_KEY
+tags:
+  - fiscal
+  - nfe
+  - invoice
+  - tax
+  - brazil
+status: beta
+governance:
+  governedTools:
+    - create_nfe
+endpoints:
+  - name: create_nfe
+    description: "Issue a new NFe (electronic invoice)"
+    descriptionPt: "Emite uma nova NFe (nota fiscal eletrônica)"
+    method: POST
+    path: /nfe
+    governed: true
+    body:
+      - name: natureza_operacao
+        type: string
+        required: true
+        description: "Operation nature (e.g., Venda)"
+      - name: items
+        type: object
+        required: true
+        description: "Invoice items"
+  - name: get_nfe
+    description: "Get NFe details by ID"
+    descriptionPt: "Busca detalhes de NFe por ID"
+    method: GET
+    path: /nfe/{id}
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "NFe ID"
+        location: path
+  - name: cancel_nfe
+    description: "Cancel an issued NFe"
+    descriptionPt: "Cancela uma NFe emitida"
+    method: POST
+    path: /nfe/{id}/cancelamento
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "NFe ID"
+        location: path
+    body:
+      - name: justificativa
+        type: string
+        required: true
+        description: "Cancellation justification (min 15 chars)"
+  - name: get_nfe_pdf
+    description: "Download NFe as PDF (DANFE)"
+    descriptionPt: "Baixa NFe como PDF (DANFE)"
+    method: GET
+    path: /nfe/{id}/pdf
+    params:
+      - name: id
+        type: string
+        required: true
+        description: "NFe ID"
+        location: path
