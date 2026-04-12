@@ -1,0 +1,20 @@
+{
+  "name": "@agentgate/brasil-setup",
+  "version": "0.1.0",
+  "description": "One-command setup for AgentGate Brasil MCP servers",
+  "type": "module",
+  "bin": {
+    "agentgate-setup": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "license": "MIT"
+}
