@@ -22,7 +22,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^4.1.0
-        version: 4.1.4(vite@8.0.8)
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
 
   packages/core/discovery:
     dependencies:
@@ -35,7 +35,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^4.1.0
-        version: 4.1.4(vite@8.0.8)
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -57,7 +57,23 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^4.1.0
-        version: 4.1.4(vite@8.0.8)
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/core/generator:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../framework
+      yaml:
+        specifier: ^2.6.0
+        version: 2.8.3
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
 
   packages/core/governance:
     dependencies:
@@ -70,7 +86,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^4.1.0
-        version: 4.1.4(vite@8.0.8)
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
 
   packages/core/meta-tools:
     dependencies:
@@ -89,7 +105,329 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^4.1.0
-        version: 4.1.4(vite@8.0.8)
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-banking/stark-bank:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-communication/z-api:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-erp/omie:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-fiscal/nuvem-fiscal:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-logistics/melhor-envio:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-payments/asaas:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-payments/pagar-me:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/br-payments/zoop:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/protocols/stripe-acp:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/economic/bacen:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/economic/ibge:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/electoral/tse:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/environmental/inpe:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/identity/brasil-api:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/judicial/jurisprudencia:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/legislative/camara:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/legislative/diario-oficial:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/legislative/senado:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/data/public-procurement/pncp:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
 
 packages:
 
@@ -1296,6 +1634,11 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
+  yaml@2.8.3:
+    resolution: {integrity: sha512-AvbaCLOO2Otw/lW5bmh9d/WEdcDFdQp2Z2ZUH3pX9U2ihyUY0nvLv7J6TrWowklRGPYbB/IuIMfYgxaCPg5Bpg==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
+
   zod-to-json-schema@3.25.2:
     resolution: {integrity: sha512-O/PgfnpT1xKSDeQYSCfRI5Gy3hPf91mKVDuYLUHZJMiDFptvP41MSnWofm8dnCm0256ZNfZIM7DSzuSMAFnjHA==}
     peerDependencies:
@@ -1668,13 +2011,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.4(vite@8.0.8)':
+  '@vitest/mocker@4.1.4(vite@8.0.8(yaml@2.8.3))':
     dependencies:
       '@vitest/spy': 4.1.4
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.8
+      vite: 8.0.8(yaml@2.8.3)
 
   '@vitest/pretty-format@4.1.4':
     dependencies:
@@ -2408,7 +2751,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite@8.0.8:
+  vite@8.0.8(yaml@2.8.3):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -2417,11 +2760,12 @@ snapshots:
       tinyglobby: 0.2.16
     optionalDependencies:
       fsevents: 2.3.3
+      yaml: 2.8.3
 
-  vitest@4.1.4(vite@8.0.8):
+  vitest@4.1.4(vite@8.0.8(yaml@2.8.3)):
     dependencies:
       '@vitest/expect': 4.1.4
-      '@vitest/mocker': 4.1.4(vite@8.0.8)
+      '@vitest/mocker': 4.1.4(vite@8.0.8(yaml@2.8.3))
       '@vitest/pretty-format': 4.1.4
       '@vitest/runner': 4.1.4
       '@vitest/snapshot': 4.1.4
@@ -2438,7 +2782,7 @@ snapshots:
       tinyexec: 1.1.1
       tinyglobby: 0.2.16
       tinyrainbow: 3.1.0
-      vite: 8.0.8
+      vite: 8.0.8(yaml@2.8.3)
       why-is-node-running: 2.3.0
     transitivePeerDependencies:
       - msw
@@ -2453,6 +2797,8 @@ snapshots:
       stackback: 0.0.2
 
   wrappy@1.0.2: {}
+
+  yaml@2.8.3: {}
 
   zod-to-json-schema@3.25.2(zod@3.25.76):
     dependencies:

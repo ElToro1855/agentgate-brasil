@@ -1,0 +1,37 @@
+id: tse
+name: TSE
+category: data
+subcategory: electoral
+description: "Brazilian Electoral Court — candidates, elections, campaign finance"
+descriptionPt: "Tribunal Superior Eleitoral — candidatos, eleições, financiamento de campanha"
+baseUrl: https://divulgacandcontas.tse.jus.br/divulga/rest/v1
+auth:
+  type: none
+  envVars: []
+tags: [tse, elections, candidates, campaign, brazil, free]
+status: beta
+endpoints:
+  - name: list_elections
+    description: "List elections by year"
+    descriptionPt: "Lista eleições por ano"
+    method: GET
+    path: /eleicao/buscar/{year}/1
+    params:
+      - { name: year, type: string, required: true, description: "Election year (e.g., 2022)", location: path }
+  - name: search_candidates
+    description: "Search candidates by name"
+    descriptionPt: "Busca candidatos por nome"
+    method: GET
+    path: /candidatura/listar/{year}/{election_id}/candidatos
+    params:
+      - { name: year, type: string, required: true, description: "Election year", location: path }
+      - { name: election_id, type: string, required: true, description: "Election ID", location: path }
+  - name: get_candidate
+    description: "Get candidate details"
+    descriptionPt: "Busca detalhes de candidato"
+    method: GET
+    path: /candidatura/buscar/{year}/{election_id}/candidato/{candidate_id}
+    params:
+      - { name: year, type: string, required: true, description: "Year", location: path }
+      - { name: election_id, type: string, required: true, description: "Election ID", location: path }
+      - { name: candidate_id, type: string, required: true, description: "Candidate ID", location: path }

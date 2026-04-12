@@ -1,0 +1,28 @@
+id: jurisprudencia
+name: Jurisprudencia
+category: data
+subcategory: judicial
+description: "Brazilian supreme court rulings — STF and STJ jurisprudence search"
+descriptionPt: "Jurisprudência dos tribunais superiores — busca STF e STJ"
+baseUrl: https://jurisprudencia.stf.jus.br/api/search
+auth:
+  type: none
+  envVars: []
+tags: [jurisprudencia, stf, stj, judicial, law, brazil, free]
+status: beta
+endpoints:
+  - name: search_stf
+    description: "Search STF (Supreme Federal Court) rulings"
+    descriptionPt: "Busca jurisprudência do STF"
+    method: GET
+    path: /stf
+    params:
+      - { name: query, type: string, required: true, description: "Search query", location: query }
+      - { name: page, type: number, required: false, description: "Page number", location: query }
+  - name: search_stj
+    description: "Search STJ (Superior Court of Justice) rulings"
+    descriptionPt: "Busca jurisprudência do STJ"
+    method: GET
+    path: /stj
+    params:
+      - { name: query, type: string, required: true, description: "Search query", location: query }

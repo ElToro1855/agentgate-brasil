@@ -1,0 +1,51 @@
+id: pagar-me
+name: PagarMe
+category: commerce
+subcategory: br-payments
+description: "Brazilian payment platform — charges, subscriptions, recipients, split payments"
+descriptionPt: "Plataforma de pagamentos brasileira — cobranças, assinaturas, recebedores, split"
+baseUrl: https://api.pagar.me/core/v5
+auth:
+  type: basic
+  envVars:
+    - PAGARME_API_KEY
+tags: [payments, pix, credit-card, boleto, split, brazil]
+status: beta
+governance:
+  governedTools:
+    - create_charge
+endpoints:
+  - name: create_charge
+    description: "Create a new charge (Pix, boleto, or credit card)"
+    descriptionPt: "Cria uma nova cobrança (Pix, boleto ou cartão)"
+    method: POST
+    path: /charges
+    governed: true
+    body:
+      - { name: amount, type: number, required: true, description: "Amount in cents" }
+      - { name: payment_method, type: string, required: true, description: "pix, boleto, or credit_card" }
+      - { name: customer, type: object, required: true, description: "Customer details" }
+  - name: get_charge
+    description: "Get charge details"
+    descriptionPt: "Busca detalhes de cobrança"
+    method: GET
+    path: /charges/{id}
+    params:
+      - { name: id, type: string, required: true, description: "Charge ID", location: path }
+  - name: list_charges
+    description: "List charges"
+    descriptionPt: "Lista cobranças"
+    method: GET
+    path: /charges
+    params:
+      - { name: page, type: number, required: false, description: "Page", location: query }
+      - { name: size, type: number, required: false, description: "Page size", location: query }
+  - name: create_recipient
+    description: "Create a payment recipient (for split)"
+    descriptionPt: "Cria um recebedor (para split de pagamentos)"
+    method: POST
+    path: /recipients
+    body:
+      - { name: name, type: string, required: true, description: "Recipient name" }
+      - { name: document, type: string, required: true, description: "CPF/CNPJ" }
+      - { name: type, type: string, required: true, description: "individual or company" }

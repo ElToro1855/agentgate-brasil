@@ -1,0 +1,29 @@
+{
+  "name": "@agentgate/mcp-inpe",
+  "version": "0.1.0",
+  "description": "INPE fires and deforestation MCP server for AgentGate Brasil",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@agentgate/framework": "workspace:*",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  },
+  "license": "MIT"
+}

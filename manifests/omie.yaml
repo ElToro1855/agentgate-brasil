@@ -1,0 +1,46 @@
+id: omie
+name: Omie
+category: commerce
+subcategory: br-erp
+description: "Brazilian ERP system — customers, invoices, products, financial"
+descriptionPt: "Sistema ERP brasileiro — clientes, notas fiscais, produtos, financeiro"
+baseUrl: https://app.omie.com.br/api/v1
+auth:
+  type: api_key
+  envVars:
+    - OMIE_APP_KEY
+    - OMIE_APP_SECRET
+tags: [erp, invoicing, products, financial, brazil]
+status: beta
+endpoints:
+  - name: list_customers
+    description: "List customers"
+    descriptionPt: "Lista clientes"
+    method: POST
+    path: /geral/clientes/
+    body:
+      - { name: pagina, type: number, required: true, description: "Page number" }
+      - { name: registros_por_pagina, type: number, required: true, description: "Records per page" }
+  - name: get_customer
+    description: "Get customer details"
+    descriptionPt: "Busca detalhes de cliente"
+    method: POST
+    path: /geral/clientes/
+    body:
+      - { name: codigo_cliente, type: number, required: true, description: "Customer code" }
+  - name: list_products
+    description: "List products"
+    descriptionPt: "Lista produtos"
+    method: POST
+    path: /geral/produtos/
+    body:
+      - { name: pagina, type: number, required: true, description: "Page number" }
+      - { name: registros_por_pagina, type: number, required: true, description: "Records per page" }
+  - name: list_invoices
+    description: "List service invoices (NFSe)"
+    descriptionPt: "Lista notas fiscais de serviço (NFSe)"
+    method: POST
+    path: /servicos/nfse/
+    body:
+      - { name: pagina, type: number, required: true, description: "Page number" }
+      - { name: registros_por_pagina, type: number, required: true, description: "Records per page" }

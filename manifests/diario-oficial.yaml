@@ -1,0 +1,23 @@
+id: diario-oficial
+name: DiarioOficial
+category: data
+subcategory: legislative
+description: "Brazilian Official Gazette (DOU) — search publications, acts, regulations"
+descriptionPt: "Diário Oficial da União (DOU) — busca de publicações, atos, regulamentos"
+baseUrl: https://queridodiario.ok.org.br/api
+auth:
+  type: none
+  envVars: []
+tags: [diario-oficial, dou, legislation, gazette, brazil, free]
+status: beta
+endpoints:
+  - name: search_gazettes
+    description: "Search official gazette publications"
+    descriptionPt: "Busca publicações do Diário Oficial"
+    method: GET
+    path: /gazettes
+    params:
+      - { name: querystring, type: string, required: false, description: "Search text", location: query }
+      - { name: territory_id, type: string, required: false, description: "IBGE territory code", location: query }
+      - { name: since, type: string, required: false, description: "Start date (YYYY-MM-DD)", location: query }
+      - { name: until, type: string, required: false, description: "End date (YYYY-MM-DD)", location: query }

@@ -1,0 +1,28 @@
+id: inpe
+name: INPE
+category: data
+subcategory: environmental
+description: "Brazilian space research — fires, deforestation alerts, satellite data"
+descriptionPt: "Instituto Nacional de Pesquisas Espaciais — queimadas, alertas de desmatamento, dados de satélite"
+baseUrl: https://queimadas.dgi.inpe.br/api
+auth:
+  type: none
+  envVars: []
+tags: [inpe, fires, deforestation, satellite, environment, brazil, free]
+status: beta
+endpoints:
+  - name: get_active_fires
+    description: "Get active fire hotspots in Brazil"
+    descriptionPt: "Busca focos de incêndio ativos no Brasil"
+    method: GET
+    path: /focos
+    params:
+      - { name: pais_id, type: string, required: false, description: "Country ID (33 for Brazil)", location: query }
+      - { name: estado_id, type: string, required: false, description: "State ID", location: query }
+  - name: get_fire_count
+    description: "Get fire count by state and period"
+    descriptionPt: "Busca contagem de focos por estado e período"
+    method: GET
+    path: /focos/count
+    params:
+      - { name: estado_id, type: string, required: false, description: "State ID", location: query }

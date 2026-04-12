@@ -1,0 +1,29 @@
+id: pncp
+name: PNCP
+category: data
+subcategory: public-procurement
+description: "Brazilian public procurement portal — government contracts, bids, awards"
+descriptionPt: "Portal Nacional de Contratações Públicas — contratos, licitações, adjudicações"
+baseUrl: https://pncp.gov.br/api/consulta/v1
+auth:
+  type: none
+  envVars: []
+tags: [pncp, procurement, government, contracts, bids, brazil, free]
+status: beta
+endpoints:
+  - name: search_contracts
+    description: "Search public contracts"
+    descriptionPt: "Busca contratos públicos"
+    method: GET
+    path: /contratacoes/publicacao
+    params:
+      - { name: dataInicial, type: string, required: false, description: "Start date (YYYYMMDD)", location: query }
+      - { name: dataFinal, type: string, required: false, description: "End date", location: query }
+      - { name: pagina, type: number, required: false, description: "Page number", location: query }
+  - name: get_contract
+    description: "Get contract details by ID"
+    descriptionPt: "Busca detalhes de contrato por ID"
+    method: GET
+    path: /contratacoes/{id}
+    params:
+      - { name: id, type: string, required: true, description: "Contract ID", location: path }

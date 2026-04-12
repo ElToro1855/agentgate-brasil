@@ -1,0 +1,54 @@
+id: stark-bank
+name: StarkBank
+category: commerce
+subcategory: br-banking
+description: "Brazilian digital banking API — transfers, boletos, Pix, balance"
+descriptionPt: "API bancária digital brasileira — transferências, boletos, Pix, saldo"
+baseUrl: https://api.starkbank.com/v2
+auth:
+  type: bearer
+  envVars:
+    - STARK_BANK_API_KEY
+tags: [banking, pix, transfer, boleto, brazil]
+status: beta
+governance:
+  governedTools:
+    - create_transfer
+    - create_boleto
+endpoints:
+  - name: get_balance
+    description: "Get account balance"
+    descriptionPt: "Consulta saldo da conta"
+    method: GET
+    path: /balance
+  - name: create_transfer
+    description: "Create a bank transfer"
+    descriptionPt: "Cria uma transferência bancária"
+    method: POST
+    path: /transfer
+    governed: true
+    body:
+      - { name: amount, type: number, required: true, description: "Amount in cents" }
+      - { name: bankCode, type: string, required: true, description: "Bank code" }
+      - { name: branchCode, type: string, required: true, description: "Branch" }
+      - { name: accountNumber, type: string, required: true, description: "Account" }
+      - { name: taxId, type: string, required: true, description: "CPF/CNPJ" }
+      - { name: name, type: string, required: true, description: "Recipient name" }
+  - name: create_boleto
+    description: "Create a boleto payment slip"
+    descriptionPt: "Cria um boleto bancário"
+    method: POST
+    path: /boleto
+    governed: true
+    body:
+      - { name: amount, type: number, required: true, description: "Amount in cents" }
+      - { name: name, type: string, required: true, description: "Payer name" }
+      - { name: taxId, type: string, required: true, description: "CPF/CNPJ" }
+      - { name: due, type: string, required: true, description: "Due date" }
+  - name: list_transactions
+    description: "List account transactions"
+    descriptionPt: "Lista transações da conta"
+    method: GET
+    path: /transaction
+    params:
+      - { name: limit, type: number, required: false, description: "Max results", location: query }
