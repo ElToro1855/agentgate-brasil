@@ -1,0 +1,30 @@
+{
+  "name": "@agentgate/meta-tools",
+  "version": "0.1.0",
+  "description": "Framework meta-tools for AgentGate Brasil",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@agentgate/framework": "workspace:*",
+    "@agentgate/discovery": "workspace:*",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  },
+  "license": "MIT"
+}
