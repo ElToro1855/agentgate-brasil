@@ -1,0 +1,50 @@
+id: rappi
+name: Rappi
+category: commerce
+subcategory: consumer
+description: "Rappi on-demand delivery — restaurants, groceries, pharmacy, anything"
+descriptionPt: "Rappi delivery sob demanda — restaurantes, mercado, farmácia, qualquer coisa"
+baseUrl: https://api.rappi.com/v1
+auth:
+  type: bearer
+  envVars:
+    - RAPPI_API_KEY
+tags: [rappi, delivery, food, grocery, pharmacy, brazil, consumer]
+status: alpha
+governance:
+  governedTools:
+    - place_order
+endpoints:
+  - name: search_stores
+    description: "Search stores and restaurants near a location"
+    descriptionPt: "Busca lojas e restaurantes próximos"
+    method: GET
+    path: /stores
+    params:
+      - { name: lat, type: string, required: true, description: "Latitude", location: query }
+      - { name: lng, type: string, required: true, description: "Longitude", location: query }
+      - { name: query, type: string, required: false, description: "Search text", location: query }
+  - name: get_store_menu
+    description: "Get store catalog/menu"
+    descriptionPt: "Busca catálogo/cardápio da loja"
+    method: GET
+    path: /stores/{store_id}/menu
+    params:
+      - { name: store_id, type: string, required: true, description: "Store ID", location: path }
+  - name: place_order
+    description: "Place a delivery order. GOVERNED."
+    descriptionPt: "Faz um pedido de entrega. GOVERNADO."
+    method: POST
+    path: /orders
+    governed: true
+    body:
+      - { name: store_id, type: string, required: true, description: "Store ID" }
+      - { name: items, type: object, required: true, description: "Order items" }
+      - { name: address, type: object, required: true, description: "Delivery address" }
+  - name: track_order
+    description: "Track delivery status"
+    descriptionPt: "Rastreia status da entrega"
+    method: GET
+    path: /orders/{order_id}/tracking
+    params:
+      - { name: order_id, type: string, required: true, description: "Order ID", location: path }

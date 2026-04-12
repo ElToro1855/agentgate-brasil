@@ -1,0 +1,64 @@
+id: ifood
+name: iFood
+category: commerce
+subcategory: consumer
+description: "iFood food delivery — search restaurants, browse menus, place orders, track delivery"
+descriptionPt: "iFood delivery de comida — buscar restaurantes, ver cardápios, fazer pedidos, rastrear entrega"
+baseUrl: https://merchant-api.ifood.com.br
+auth:
+  type: bearer
+  envVars:
+    - IFOOD_CLIENT_ID
+    - IFOOD_CLIENT_SECRET
+tags: [ifood, food, delivery, restaurant, brazil, consumer]
+status: alpha
+governance:
+  governedTools:
+    - place_order
+endpoints:
+  - name: search_restaurants
+    description: "Search restaurants by location and query"
+    descriptionPt: "Busca restaurantes por localização e texto"
+    method: GET
+    path: /v1/merchants
+    params:
+      - { name: latitude, type: string, required: true, description: "Latitude", location: query }
+      - { name: longitude, type: string, required: true, description: "Longitude", location: query }
+      - { name: query, type: string, required: false, description: "Search text", location: query }
+  - name: get_restaurant
+    description: "Get restaurant details and menu"
+    descriptionPt: "Busca detalhes do restaurante e cardápio"
+    method: GET
+    path: /v1/merchants/{merchant_id}
+    params:
+      - { name: merchant_id, type: string, required: true, description: "Restaurant ID", location: path }
+  - name: get_menu
+    description: "Get full menu for a restaurant"
+    descriptionPt: "Busca cardápio completo de um restaurante"
+    method: GET
+    path: /v1/merchants/{merchant_id}/menu
+    params:
+      - { name: merchant_id, type: string, required: true, description: "Restaurant ID", location: path }
+  - name: place_order
+    description: "Place a food delivery order. GOVERNED."
+    descriptionPt: "Faz um pedido de delivery. GOVERNADO."
+    method: POST
+    path: /v1/orders
+    governed: true
+    body:
+      - { name: merchant_id, type: string, required: true, description: "Restaurant ID" }
+      - { name: items, type: object, required: true, description: "Order items array" }
+      - { name: delivery_address, type: object, required: true, description: "Delivery address" }
+      - { name: payment_method, type: string, required: true, description: "Payment method" }
+  - name: track_order
+    description: "Track delivery status of an order"
+    descriptionPt: "Rastreia status de entrega de um pedido"
+    method: GET
+    path: /v1/orders/{order_id}/tracking
+    params:
+      - { name: order_id, type: string, required: true, description: "Order ID", location: path }
+  - name: list_orders
+    description: "List recent orders"
+    descriptionPt: "Lista pedidos recentes"
+    method: GET
+    path: /v1/orders

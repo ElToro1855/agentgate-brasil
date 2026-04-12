@@ -1,0 +1,39 @@
+id: amazon-br
+name: AmazonBR
+category: commerce
+subcategory: consumer
+description: "Amazon Brazil — product search, reviews, pricing via Product Advertising API"
+descriptionPt: "Amazon Brasil — busca de produtos, avaliações, preços via Product Advertising API"
+baseUrl: https://webservices.amazon.com.br/paapi5
+auth:
+  type: api_key
+  envVars:
+    - AMAZON_ACCESS_KEY
+    - AMAZON_SECRET_KEY
+    - AMAZON_PARTNER_TAG
+tags: [amazon, shopping, products, reviews, brazil, consumer]
+status: alpha
+endpoints:
+  - name: search_items
+    description: "Search products on Amazon Brazil"
+    descriptionPt: "Busca produtos na Amazon Brasil"
+    method: POST
+    path: /searchitems
+    body:
+      - { name: Keywords, type: string, required: true, description: "Search keywords" }
+      - { name: SearchIndex, type: string, required: false, description: "Category (All, Electronics, Books, etc.)" }
+      - { name: ItemCount, type: number, required: false, description: "Max results (1-10)" }
+  - name: get_item
+    description: "Get product details by ASIN"
+    descriptionPt: "Busca detalhes do produto por ASIN"
+    method: POST
+    path: /getitems
+    body:
+      - { name: ItemIds, type: object, required: true, description: "Array of ASINs" }
+  - name: get_browse_nodes
+    description: "Browse product categories"
+    descriptionPt: "Navega categorias de produtos"
+    method: POST
+    path: /getbrowsenodes
+    body:
+      - { name: BrowseNodeIds, type: object, required: true, description: "Array of category IDs" }

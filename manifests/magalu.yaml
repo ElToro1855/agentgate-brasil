@@ -1,0 +1,42 @@
+id: magalu
+name: Magalu
+category: commerce
+subcategory: consumer
+description: "Magazine Luiza — product search, pricing, availability across Brazil's largest retailer"
+descriptionPt: "Magazine Luiza — busca de produtos, preços, disponibilidade na maior varejista do Brasil"
+baseUrl: https://api.magazineluiza.com.br/v1
+auth:
+  type: bearer
+  envVars:
+    - MAGALU_API_KEY
+tags: [magalu, shopping, retail, electronics, brazil, consumer]
+status: alpha
+endpoints:
+  - name: search_products
+    description: "Search products on Magazine Luiza"
+    descriptionPt: "Busca produtos na Magazine Luiza"
+    method: GET
+    path: /products/search
+    params:
+      - { name: q, type: string, required: true, description: "Search query", location: query }
+      - { name: limit, type: number, required: false, description: "Max results", location: query }
+  - name: get_product
+    description: "Get product details"
+    descriptionPt: "Busca detalhes do produto"
+    method: GET
+    path: /products/{sku}
+    params:
+      - { name: sku, type: string, required: true, description: "Product SKU", location: path }
+  - name: check_availability
+    description: "Check product availability by ZIP code"
+    descriptionPt: "Verifica disponibilidade do produto por CEP"
+    method: GET
+    path: /products/{sku}/availability
+    params:
+      - { name: sku, type: string, required: true, description: "Product SKU", location: path }
+      - { name: zipcode, type: string, required: true, description: "ZIP code (CEP)", location: query }
+  - name: list_categories
+    description: "List product categories"
+    descriptionPt: "Lista categorias de produtos"
+    method: GET
+    path: /categories

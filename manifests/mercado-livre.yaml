@@ -1,0 +1,68 @@
+id: mercado-livre
+name: MercadoLivre
+category: commerce
+subcategory: consumer
+description: "Mercado Livre marketplace — search products, view listings, manage purchases"
+descriptionPt: "Marketplace Mercado Livre — buscar produtos, ver anúncios, gerenciar compras"
+baseUrl: https://api.mercadolibre.com
+auth:
+  type: bearer
+  envVars:
+    - MERCADO_LIVRE_ACCESS_TOKEN
+tags: [mercado-livre, marketplace, shopping, products, brazil, consumer]
+status: alpha
+governance:
+  governedTools:
+    - create_purchase
+endpoints:
+  - name: search_products
+    description: "Search products on Mercado Livre"
+    descriptionPt: "Busca produtos no Mercado Livre"
+    method: GET
+    path: /sites/MLB/search
+    params:
+      - { name: q, type: string, required: true, description: "Search query", location: query }
+      - { name: limit, type: number, required: false, description: "Max results", location: query }
+      - { name: category, type: string, required: false, description: "Category ID", location: query }
+  - name: get_product
+    description: "Get product listing details"
+    descriptionPt: "Busca detalhes de um anúncio"
+    method: GET
+    path: /items/{item_id}
+    params:
+      - { name: item_id, type: string, required: true, description: "Item ID (MLB...)", location: path }
+  - name: get_product_description
+    description: "Get product full description"
+    descriptionPt: "Busca descrição completa do produto"
+    method: GET
+    path: /items/{item_id}/description
+    params:
+      - { name: item_id, type: string, required: true, description: "Item ID", location: path }
+  - name: list_categories
+    description: "List product categories"
+    descriptionPt: "Lista categorias de produtos"
+    method: GET
+    path: /sites/MLB/categories
+  - name: get_seller
+    description: "Get seller information and reputation"
+    descriptionPt: "Busca informações e reputação do vendedor"
+    method: GET
+    path: /users/{seller_id}
+    params:
+      - { name: seller_id, type: string, required: true, description: "Seller user ID", location: path }
+  - name: create_purchase
+    description: "Create a purchase order. GOVERNED."
+    descriptionPt: "Cria um pedido de compra. GOVERNADO."
+    method: POST
+    path: /orders
+    governed: true
+    body:
+      - { name: item_id, type: string, required: true, description: "Item ID" }
+      - { name: quantity, type: number, required: true, description: "Quantity" }
+  - name: list_purchases
+    description: "List recent purchases"
+    descriptionPt: "Lista compras recentes"
+    method: GET
+    path: /orders/search
+    params:
+      - { name: buyer, type: string, required: false, description: "Buyer user ID", location: query }
