@@ -1,0 +1,38 @@
+id: efi
+name: EFI
+category: commerce
+subcategory: br-payments
+description: "EFI (Gerencianet) — Pix, boleto, cards, open finance"
+descriptionPt: "EFI (Gerencianet) — Pix, boleto, cartões, open finance"
+baseUrl: https://api-pix.gerencianet.com.br
+auth:
+  type: bearer
+  envVars: [EFI_CLIENT_ID, EFI_CLIENT_SECRET]
+tags: [payments, pix, boleto, gerencianet, brazil]
+status: beta
+governance:
+  governedTools: [create_pix_charge]
+endpoints:
+  - name: create_pix_charge
+    description: "Create a Pix charge (cobrança imediata)"
+    descriptionPt: "Cria uma cobrança Pix imediata"
+    method: POST
+    path: /v2/cob
+    governed: true
+    body:
+      - { name: valor, type: object, required: true, description: "Amount object {original: '10.00'}" }
+      - { name: chave, type: string, required: true, description: "Pix key" }
+  - name: get_pix_charge
+    description: "Get Pix charge details"
+    descriptionPt: "Busca detalhes de cobrança Pix"
+    method: GET
+    path: /v2/cob/{txid}
+    params:
+      - { name: txid, type: string, required: true, description: "Transaction ID", location: path }
+  - name: create_pix_qrcode
+    description: "Generate QR code for a Pix charge"
+    descriptionPt: "Gera QR code para cobrança Pix"
+    method: GET
+    path: /v2/loc/{id}/qrcode
+    params:
+      - { name: id, type: string, required: true, description: "Location ID", location: path }

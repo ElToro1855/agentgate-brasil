@@ -1,0 +1,46 @@
+id: vindi
+name: Vindi
+category: commerce
+subcategory: br-payments
+description: "Vindi — recurring billing, subscriptions, payment management"
+descriptionPt: "Vindi — cobrança recorrente, assinaturas, gestão de pagamentos"
+baseUrl: https://app.vindi.com.br/api/v1
+auth:
+  type: basic
+  envVars: [VINDI_API_KEY]
+tags: [payments, subscriptions, recurring, billing, brazil]
+status: beta
+governance:
+  governedTools: [create_bill]
+endpoints:
+  - name: create_bill
+    description: "Create a billing charge"
+    descriptionPt: "Cria uma cobrança"
+    method: POST
+    path: /bills
+    governed: true
+    body:
+      - { name: customer_id, type: number, required: true, description: "Customer ID" }
+      - { name: payment_method_code, type: string, required: true, description: "credit_card, bank_slip, pix" }
+      - { name: bill_items, type: object, required: true, description: "Billing items" }
+  - name: get_bill
+    description: "Get bill details"
+    descriptionPt: "Busca detalhes de cobrança"
+    method: GET
+    path: /bills/{id}
+    params:
+      - { name: id, type: string, required: true, description: "Bill ID", location: path }
+  - name: create_subscription
+    description: "Create a subscription"
+    descriptionPt: "Cria uma assinatura"
+    method: POST
+    path: /subscriptions
+    body:
+      - { name: plan_id, type: number, required: true, description: "Plan ID" }
+      - { name: customer_id, type: number, required: true, description: "Customer ID" }
+      - { name: payment_method_code, type: string, required: true, description: "Payment method" }
+  - name: list_customers
+    description: "List customers"
+    descriptionPt: "Lista clientes"
+    method: GET
+    path: /customers

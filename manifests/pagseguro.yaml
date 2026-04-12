@@ -1,0 +1,39 @@
+id: pagseguro
+name: PagSeguro
+category: commerce
+subcategory: br-payments
+description: "PagBank/PagSeguro — charges, Pix, boleto, card tokenization"
+descriptionPt: "PagBank/PagSeguro — cobranças, Pix, boleto, tokenização de cartão"
+baseUrl: https://api.pagseguro.com
+auth:
+  type: bearer
+  envVars: [PAGSEGURO_TOKEN]
+tags: [payments, pix, boleto, credit-card, brazil]
+status: beta
+governance:
+  governedTools: [create_charge]
+endpoints:
+  - name: create_charge
+    description: "Create a payment charge"
+    descriptionPt: "Cria uma cobrança"
+    method: POST
+    path: /charges
+    governed: true
+    body:
+      - { name: amount, type: number, required: true, description: "Amount in cents" }
+      - { name: payment_method, type: string, required: true, description: "CREDIT_CARD, BOLETO, or PIX" }
+      - { name: customer, type: object, required: true, description: "Customer details" }
+  - name: get_charge
+    description: "Get charge details"
+    descriptionPt: "Busca detalhes de cobrança"
+    method: GET
+    path: /charges/{id}
+    params:
+      - { name: id, type: string, required: true, description: "Charge ID", location: path }
+  - name: list_charges
+    description: "List charges"
+    descriptionPt: "Lista cobranças"
+    method: GET
+    path: /charges
+    params:
+      - { name: status, type: string, required: false, description: "Filter by status", location: query }

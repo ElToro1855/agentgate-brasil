@@ -1,0 +1,46 @@
+id: stone
+name: Stone
+category: commerce
+subcategory: br-payments
+description: "Stone — open banking, Pix, card processing for merchants"
+descriptionPt: "Stone — open banking, Pix, processamento de cartões para lojistas"
+baseUrl: https://api.openbank.stone.com.br/api/v1
+auth:
+  type: bearer
+  envVars: [STONE_API_KEY]
+tags: [payments, open-banking, pix, stone, brazil]
+status: beta
+governance:
+  governedTools: [create_pix_payment]
+endpoints:
+  - name: get_balance
+    description: "Get account balance"
+    descriptionPt: "Consulta saldo da conta"
+    method: GET
+    path: /accounts/{account_id}/balance
+    params:
+      - { name: account_id, type: string, required: true, description: "Account ID", location: path }
+  - name: create_pix_payment
+    description: "Create a Pix payment"
+    descriptionPt: "Cria um pagamento Pix"
+    method: POST
+    path: /pix/outbound_pix_payments
+    governed: true
+    body:
+      - { name: amount, type: number, required: true, description: "Amount in cents" }
+      - { name: account_id, type: string, required: true, description: "Source account ID" }
+      - { name: target, type: object, required: true, description: "Pix key or bank account target" }
+  - name: list_pix_payments
+    description: "List Pix payments"
+    descriptionPt: "Lista pagamentos Pix"
+    method: GET
+    path: /pix/outbound_pix_payments
+    params:
+      - { name: account_id, type: string, required: true, description: "Account ID", location: query }
+  - name: get_pix_payment
+    description: "Get Pix payment details"
+    descriptionPt: "Busca detalhes de pagamento Pix"
+    method: GET
+    path: /pix/outbound_pix_payments/{id}
+    params:
+      - { name: id, type: string, required: true, description: "Payment ID", location: path }

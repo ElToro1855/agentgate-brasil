@@ -1,0 +1,40 @@
+id: iugu
+name: Iugu
+category: commerce
+subcategory: br-payments
+description: "Iugu — subscriptions, invoicing, marketplace splits"
+descriptionPt: "Iugu — assinaturas, faturamento, split de marketplace"
+baseUrl: https://api.iugu.com/v1
+auth:
+  type: basic
+  envVars: [IUGU_API_TOKEN]
+tags: [payments, subscriptions, invoicing, split, brazil]
+status: beta
+governance:
+  governedTools: [create_invoice]
+endpoints:
+  - name: create_invoice
+    description: "Create an invoice"
+    descriptionPt: "Cria uma fatura"
+    method: POST
+    path: /invoices
+    governed: true
+    body:
+      - { name: email, type: string, required: true, description: "Customer email" }
+      - { name: due_date, type: string, required: true, description: "Due date" }
+      - { name: items, type: object, required: true, description: "Invoice items" }
+  - name: get_invoice
+    description: "Get invoice details"
+    descriptionPt: "Busca detalhes de fatura"
+    method: GET
+    path: /invoices/{id}
+    params:
+      - { name: id, type: string, required: true, description: "Invoice ID", location: path }
+  - name: create_subscription
+    description: "Create a subscription"
+    descriptionPt: "Cria uma assinatura"
+    method: POST
+    path: /subscriptions
+    body:
+      - { name: plan_identifier, type: string, required: true, description: "Plan ID" }
+      - { name: customer_id, type: string, required: true, description: "Customer ID" }

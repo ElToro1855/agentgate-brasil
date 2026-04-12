@@ -1,0 +1,36 @@
+id: ebanx
+name: EBANX
+category: commerce
+subcategory: br-payments
+description: "EBANX — cross-border payments for LatAm, Pix, boleto, cards"
+descriptionPt: "EBANX — pagamentos cross-border para LatAm, Pix, boleto, cartões"
+baseUrl: https://api.ebanx.com/ws
+auth:
+  type: api_key
+  envVars: [EBANX_INTEGRATION_KEY]
+  headerName: integration_key
+tags: [payments, cross-border, pix, brazil, latam]
+status: beta
+governance:
+  governedTools: [create_payment]
+endpoints:
+  - name: create_payment
+    description: "Create a cross-border payment"
+    descriptionPt: "Cria um pagamento cross-border"
+    method: POST
+    path: /direct
+    governed: true
+    body:
+      - { name: payment_type_code, type: string, required: true, description: "pix, boleto, creditcard" }
+      - { name: amount_total, type: number, required: true, description: "Total amount" }
+      - { name: currency_code, type: string, required: true, description: "Currency (BRL, USD)" }
+      - { name: name, type: string, required: true, description: "Customer name" }
+      - { name: email, type: string, required: true, description: "Customer email" }
+      - { name: document, type: string, required: true, description: "CPF/CNPJ" }
+  - name: get_payment
+    description: "Query payment status"
+    descriptionPt: "Consulta status de pagamento"
+    method: GET
+    path: /query
+    params:
+      - { name: hash, type: string, required: true, description: "Payment hash", location: query }

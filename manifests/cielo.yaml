@@ -1,0 +1,46 @@
+id: cielo
+name: Cielo
+category: commerce
+subcategory: br-payments
+description: "Cielo — credit/debit card processing, tokenization"
+descriptionPt: "Cielo — processamento de cartões crédito/débito, tokenização"
+baseUrl: https://api.cieloecommerce.cielo.com.br/1
+auth:
+  type: api_key
+  envVars: [CIELO_MERCHANT_ID, CIELO_MERCHANT_KEY]
+  headerName: MerchantId
+tags: [payments, credit-card, debit-card, cielo, brazil]
+status: beta
+governance:
+  governedTools: [create_sale]
+endpoints:
+  - name: create_sale
+    description: "Create a card sale/transaction"
+    descriptionPt: "Cria uma venda/transação de cartão"
+    method: POST
+    path: /sales
+    governed: true
+    body:
+      - { name: MerchantOrderId, type: string, required: true, description: "Merchant order ID" }
+      - { name: Payment, type: object, required: true, description: "Payment details" }
+  - name: get_sale
+    description: "Get sale details"
+    descriptionPt: "Busca detalhes de venda"
+    method: GET
+    path: /sales/{paymentId}
+    params:
+      - { name: paymentId, type: string, required: true, description: "Payment ID", location: path }
+  - name: capture_sale
+    description: "Capture a pre-authorized sale"
+    descriptionPt: "Captura uma venda pré-autorizada"
+    method: PUT
+    path: /sales/{paymentId}/capture
+    params:
+      - { name: paymentId, type: string, required: true, description: "Payment ID", location: path }
+  - name: void_sale
+    description: "Void/cancel a sale"
+    descriptionPt: "Cancela uma venda"
+    method: PUT
+    path: /sales/{paymentId}/void
+    params:
+      - { name: paymentId, type: string, required: true, description: "Payment ID", location: path }
