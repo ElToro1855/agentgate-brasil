@@ -1,0 +1,38 @@
+id: mercado-bitcoin
+name: MercadoBitcoin
+category: commerce
+subcategory: crypto
+description: "Mercado Bitcoin — Brazilian crypto exchange, trading, balances"
+descriptionPt: "Mercado Bitcoin — exchange de criptomoedas brasileira, negociação, saldos"
+baseUrl: https://api.mercadobitcoin.net/api/v4
+auth:
+  type: bearer
+  envVars:
+    - MERCADO_BITCOIN_API_KEY
+tags:
+  - crypto
+  - bitcoin
+  - exchange
+  - trading
+  - brazil
+status: beta
+endpoints:
+  - name: get_ticker
+    description: "Get current price ticker for a symbol"
+    descriptionPt: "Busca ticker de preço atual de um símbolo"
+    method: GET
+    path: /tickers
+    params:
+      - { name: symbols, type: string, required: false, description: "Comma-separated symbols (BTC-BRL,ETH-BRL)", location: query }
+  - name: get_orderbook
+    description: "Get order book for a symbol"
+    descriptionPt: "Busca livro de ofertas de um símbolo"
+    method: GET
+    path: /{symbol}/orderbook
+    params:
+      - { name: symbol, type: string, required: true, description: "Trading pair (e.g., BTC-BRL)", location: path }
+  - name: list_balances
+    description: "List account balances"
+    descriptionPt: "Lista saldos da conta"
+    method: GET
+    path: /accounts/balances

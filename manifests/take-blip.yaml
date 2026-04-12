@@ -1,0 +1,36 @@
+id: take-blip
+name: TakeBlip
+category: commerce
+subcategory: br-communication
+description: "Take Blip — chatbot platform, WhatsApp Business, conversational commerce"
+descriptionPt: "Take Blip — plataforma de chatbot, WhatsApp Business, comércio conversacional"
+baseUrl: https://http.msging.net
+auth:
+  type: bearer
+  envVars:
+    - TAKE_BLIP_KEY
+tags:
+  - chatbot
+  - whatsapp
+  - conversational
+  - commerce
+  - brazil
+status: beta
+endpoints:
+  - name: send_message
+    description: "Send a message to a contact"
+    descriptionPt: "Envia mensagem para um contato"
+    method: POST
+    path: /messages
+    body:
+      - { name: to, type: string, required: true, description: "Contact identifier" }
+      - { name: type, type: string, required: true, description: "text/plain, application/json, etc." }
+      - { name: content, type: string, required: true, description: "Message content" }
+  - name: get_contacts
+    description: "List contacts"
+    descriptionPt: "Lista contatos"
+    method: POST
+    path: /commands
+    body:
+      - { name: method, type: string, required: true, description: "get" }
+      - { name: uri, type: string, required: true, description: "/contacts" }

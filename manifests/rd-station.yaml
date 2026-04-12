@@ -1,0 +1,37 @@
+id: rd-station
+name: RDStation
+category: commerce
+subcategory: br-communication
+description: "RD Station — marketing automation, CRM, lead management"
+descriptionPt: "RD Station — automação de marketing, CRM, gestão de leads"
+baseUrl: https://api.rd.services
+auth:
+  type: bearer
+  envVars:
+    - RD_STATION_TOKEN
+tags:
+  - marketing
+  - crm
+  - leads
+  - automation
+  - brazil
+status: beta
+endpoints:
+  - name: create_contact
+    description: "Create or update a contact/lead"
+    descriptionPt: "Cria ou atualiza um contato/lead"
+    method: POST
+    path: /platform/contacts
+    body:
+      - { name: email, type: string, required: true, description: "Contact email" }
+      - { name: name, type: string, required: false, description: "Contact name" }
+      - { name: tags, type: object, required: false, description: "Tags array" }
+  - name: create_event
+    description: "Track a conversion event"
+    descriptionPt: "Registra um evento de conversão"
+    method: POST
+    path: /platform/events
+    body:
+      - { name: event_type, type: string, required: true, description: "CONVERSION or OPPORTUNITY" }
+      - { name: event_family, type: string, required: true, description: "CDP" }
+      - { name: payload, type: object, required: true, description: "Event data" }

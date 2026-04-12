@@ -1,0 +1,35 @@
+id: correios
+name: Correios
+category: commerce
+subcategory: br-logistics
+description: "Brazilian postal service — tracking, shipping rates, CEP lookup"
+descriptionPt: "Correios — rastreamento, cálculo de frete, consulta de CEP"
+baseUrl: https://api.correios.com.br
+auth:
+  type: bearer
+  envVars:
+    - CORREIOS_TOKEN
+tags:
+  - shipping
+  - postal
+  - tracking
+  - logistics
+  - brazil
+status: beta
+endpoints:
+  - name: track_package
+    description: "Track a package by tracking code"
+    descriptionPt: "Rastreia encomenda por código"
+    method: GET
+    path: /srorastro/v1/objetos/{code}
+    params:
+      - { name: code, type: string, required: true, description: "Tracking code", location: path }
+  - name: calculate_shipping
+    description: "Calculate shipping rate"
+    descriptionPt: "Calcula frete"
+    method: POST
+    path: /preco/v1/nacional
+    body:
+      - { name: cepOrigem, type: string, required: true, description: "Origin CEP" }
+      - { name: cepDestino, type: string, required: true, description: "Destination CEP" }
+      - { name: peso, type: string, required: true, description: "Weight in grams" }

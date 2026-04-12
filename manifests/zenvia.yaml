@@ -1,0 +1,37 @@
+id: zenvia
+name: Zenvia
+category: commerce
+subcategory: br-communication
+description: "Zenvia — omnichannel messaging: SMS, WhatsApp, RCS"
+descriptionPt: "Zenvia — mensagens omnichannel: SMS, WhatsApp, RCS"
+baseUrl: https://api.zenvia.com/v2
+auth:
+  type: bearer
+  envVars:
+    - ZENVIA_API_TOKEN
+tags:
+  - sms
+  - whatsapp
+  - rcs
+  - messaging
+  - brazil
+status: beta
+endpoints:
+  - name: send_message
+    description: "Send a message via any channel"
+    descriptionPt: "Envia mensagem por qualquer canal"
+    method: POST
+    path: /channels/{channel}/messages
+    params:
+      - { name: channel, type: string, required: true, description: "sms, whatsapp, or rcs", location: path }
+    body:
+      - { name: from, type: string, required: true, description: "Sender ID" }
+      - { name: to, type: string, required: true, description: "Recipient phone" }
+      - { name: contents, type: object, required: true, description: "Message contents array" }
+  - name: get_message
+    description: "Get message status"
+    descriptionPt: "Consulta status de mensagem"
+    method: GET
+    path: /reports/{messageId}
+    params:
+      - { name: messageId, type: string, required: true, description: "Message ID", location: path }

@@ -1,0 +1,43 @@
+id: vtex
+name: VTEX
+category: commerce
+subcategory: br-logistics
+description: "VTEX e-commerce platform — orders, products, inventory, fulfillment"
+descriptionPt: "Plataforma e-commerce VTEX — pedidos, produtos, estoque, fulfillment"
+baseUrl: https://{account}.vtexcommercestable.com.br/api
+auth:
+  type: api_key
+  envVars:
+    - VTEX_APP_KEY
+    - VTEX_APP_TOKEN
+  headerName: X-VTEX-API-AppKey
+tags:
+  - ecommerce
+  - orders
+  - products
+  - inventory
+  - brazil
+status: beta
+endpoints:
+  - name: list_orders
+    description: "List orders"
+    descriptionPt: "Lista pedidos"
+    method: GET
+    path: /oms/pvt/orders
+    params:
+      - { name: page, type: number, required: false, description: "Page", location: query }
+      - { name: per_page, type: number, required: false, description: "Per page", location: query }
+  - name: get_order
+    description: "Get order details"
+    descriptionPt: "Busca detalhes do pedido"
+    method: GET
+    path: /oms/pvt/orders/{orderId}
+    params:
+      - { name: orderId, type: string, required: true, description: "Order ID", location: path }
+  - name: search_products
+    description: "Search product catalog"
+    descriptionPt: "Busca catálogo de produtos"
+    method: GET
+    path: /catalog_system/pub/products/search
+    params:
+      - { name: ft, type: string, required: false, description: "Full text search", location: query }

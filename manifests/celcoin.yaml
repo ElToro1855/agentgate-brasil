@@ -1,0 +1,45 @@
+id: celcoin
+name: Celcoin
+category: commerce
+subcategory: br-payments
+description: "Celcoin — banking as a service, Pix, bill payments, mobile top-up"
+descriptionPt: "Celcoin — banking as a service, Pix, pagamento de contas, recarga de celular"
+baseUrl: https://api.celcoin.com.br/v5
+auth:
+  type: bearer
+  envVars:
+    - CELCOIN_CLIENT_ID
+    - CELCOIN_CLIENT_SECRET
+tags:
+  - payments
+  - pix
+  - baas
+  - bill-payment
+  - brazil
+status: beta
+governance:
+  governedTools:
+    - create_pix_transfer
+endpoints:
+  - name: create_pix_transfer
+    description: "Create a Pix transfer"
+    descriptionPt: "Cria uma transferência Pix"
+    method: POST
+    path: /pix/v1/payment
+    governed: true
+    body:
+      - { name: amount, type: number, required: true, description: "Amount" }
+      - { name: key, type: string, required: true, description: "Pix key" }
+      - { name: keyType, type: string, required: true, description: "Key type (cpf, cnpj, email, phone, evp)" }
+  - name: pay_bill
+    description: "Pay a utility bill"
+    descriptionPt: "Paga uma conta de consumo"
+    method: POST
+    path: /transactions/billpayments
+    body:
+      - { name: barcode, type: string, required: true, description: "Bill barcode" }
+  - name: get_balance
+    description: "Get account balance"
+    descriptionPt: "Consulta saldo"
+    method: GET
+    path: /merchant/balance

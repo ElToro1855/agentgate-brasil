@@ -1,0 +1,44 @@
+id: bling
+name: Bling
+category: commerce
+subcategory: br-erp
+description: "Bling ERP — products, orders, invoicing, inventory management"
+descriptionPt: "Bling ERP — produtos, pedidos, faturamento, gestão de estoque"
+baseUrl: https://www.bling.com.br/Api/v3
+auth:
+  type: bearer
+  envVars:
+    - BLING_API_KEY
+tags:
+  - erp
+  - products
+  - orders
+  - inventory
+  - brazil
+status: beta
+endpoints:
+  - name: list_products
+    description: "List products"
+    descriptionPt: "Lista produtos"
+    method: GET
+    path: /produtos
+  - name: get_product
+    description: "Get product details"
+    descriptionPt: "Busca detalhes do produto"
+    method: GET
+    path: /produtos/{id}
+    params:
+      - { name: id, type: string, required: true, description: "Product ID", location: path }
+  - name: list_orders
+    description: "List sales orders"
+    descriptionPt: "Lista pedidos de venda"
+    method: GET
+    path: /pedidos/vendas
+  - name: create_order
+    description: "Create a sales order"
+    descriptionPt: "Cria um pedido de venda"
+    method: POST
+    path: /pedidos/vendas
+    body:
+      - { name: contato, type: object, required: true, description: "Customer contact" }
+      - { name: itens, type: object, required: true, description: "Order items" }

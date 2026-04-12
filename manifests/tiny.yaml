@@ -1,0 +1,42 @@
+id: tiny
+name: Tiny
+category: commerce
+subcategory: br-erp
+description: "Tiny ERP — simple ERP for e-commerce, products, orders, invoicing"
+descriptionPt: "Tiny ERP — ERP simples para e-commerce, produtos, pedidos, faturamento"
+baseUrl: https://api.tiny.com.br/api2
+auth:
+  type: api_key
+  envVars:
+    - TINY_API_TOKEN
+  headerName: token
+tags:
+  - erp
+  - ecommerce
+  - products
+  - orders
+  - brazil
+status: beta
+endpoints:
+  - name: search_products
+    description: "Search products"
+    descriptionPt: "Busca produtos"
+    method: GET
+    path: /produtos.pesquisa.php
+    params:
+      - { name: pesquisa, type: string, required: false, description: "Search text", location: query }
+      - { name: formato, type: string, required: false, description: "Response format (json)", location: query }
+  - name: get_product
+    description: "Get product details"
+    descriptionPt: "Busca detalhes do produto"
+    method: GET
+    path: /produto.obter.php
+    params:
+      - { name: id, type: string, required: true, description: "Product ID", location: query }
+  - name: list_orders
+    description: "List orders"
+    descriptionPt: "Lista pedidos"
+    method: GET
+    path: /pedidos.pesquisa.php
+    params:
+      - { name: dataInicial, type: string, required: false, description: "Start date", location: query }

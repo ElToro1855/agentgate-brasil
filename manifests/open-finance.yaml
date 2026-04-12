@@ -1,0 +1,38 @@
+id: open-finance
+name: OpenFinance
+category: commerce
+subcategory: br-banking
+description: "Brazilian Open Finance — account data, payments, consents"
+descriptionPt: "Open Finance Brasil — dados de conta, pagamentos, consentimentos"
+baseUrl: https://api.openfinancebrasil.org.br
+auth:
+  type: bearer
+  envVars:
+    - OPEN_FINANCE_TOKEN
+tags:
+  - open-banking
+  - open-finance
+  - banking
+  - pix
+  - brazil
+status: alpha
+endpoints:
+  - name: list_accounts
+    description: "List linked bank accounts"
+    descriptionPt: "Lista contas bancárias vinculadas"
+    method: GET
+    path: /accounts/v2/accounts
+  - name: get_balance
+    description: "Get account balance"
+    descriptionPt: "Consulta saldo da conta"
+    method: GET
+    path: /accounts/v2/accounts/{accountId}/balances
+    params:
+      - { name: accountId, type: string, required: true, description: "Account ID", location: path }
+  - name: list_transactions
+    description: "List account transactions"
+    descriptionPt: "Lista transações da conta"
+    method: GET
+    path: /accounts/v2/accounts/{accountId}/transactions
+    params:
+      - { name: accountId, type: string, required: true, description: "Account ID", location: path }

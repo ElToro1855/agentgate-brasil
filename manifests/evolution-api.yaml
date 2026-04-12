@@ -1,0 +1,40 @@
+id: evolution-api
+name: EvolutionAPI
+category: commerce
+subcategory: br-communication
+description: "Evolution API — open-source WhatsApp API, messages, groups, media"
+descriptionPt: "Evolution API — API WhatsApp open-source, mensagens, grupos, mídia"
+baseUrl: https://api.evolution.com.br
+auth:
+  type: bearer
+  envVars:
+    - EVOLUTION_API_KEY
+tags:
+  - whatsapp
+  - messaging
+  - communication
+  - open-source
+  - brazil
+status: beta
+endpoints:
+  - name: send_text
+    description: "Send text message"
+    descriptionPt: "Envia mensagem de texto"
+    method: POST
+    path: /message/sendText/{instance}
+    params:
+      - { name: instance, type: string, required: true, description: "Instance name", location: path }
+    body:
+      - { name: number, type: string, required: true, description: "Phone number" }
+      - { name: text, type: string, required: true, description: "Message text" }
+  - name: send_media
+    description: "Send media message"
+    descriptionPt: "Envia mensagem com mídia"
+    method: POST
+    path: /message/sendMedia/{instance}
+    params:
+      - { name: instance, type: string, required: true, description: "Instance name", location: path }
+    body:
+      - { name: number, type: string, required: true, description: "Phone number" }
+      - { name: mediatype, type: string, required: true, description: "image, video, audio, document" }
+      - { name: media, type: string, required: true, description: "Media URL" }

@@ -1,0 +1,37 @@
+id: conta-azul
+name: ContaAzul
+category: commerce
+subcategory: br-fiscal
+description: "Conta Azul — accounting, invoicing, financial management for SMBs"
+descriptionPt: "Conta Azul — contabilidade, faturamento, gestão financeira para PMEs"
+baseUrl: https://api.contaazul.com/v1
+auth:
+  type: bearer
+  envVars:
+    - CONTA_AZUL_TOKEN
+tags:
+  - accounting
+  - invoicing
+  - financial
+  - smb
+  - brazil
+status: beta
+endpoints:
+  - name: list_customers
+    description: "List customers"
+    descriptionPt: "Lista clientes"
+    method: GET
+    path: /customers
+  - name: create_sale
+    description: "Create a sale"
+    descriptionPt: "Cria uma venda"
+    method: POST
+    path: /sales
+    body:
+      - { name: customer_id, type: string, required: true, description: "Customer ID" }
+      - { name: products, type: object, required: true, description: "Products array" }
+  - name: list_products
+    description: "List products"
+    descriptionPt: "Lista produtos"
+    method: GET
+    path: /products

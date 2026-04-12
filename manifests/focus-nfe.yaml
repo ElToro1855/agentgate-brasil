@@ -1,0 +1,38 @@
+id: focus-nfe
+name: FocusNFe
+category: commerce
+subcategory: br-fiscal
+description: "Focus NFe — electronic invoice issuance (NFe, NFCe, NFSe)"
+descriptionPt: "Focus NFe — emissão de notas fiscais eletrônicas (NFe, NFCe, NFSe)"
+baseUrl: https://api.focusnfe.com.br/v2
+auth:
+  type: basic
+  envVars:
+    - FOCUS_NFE_TOKEN
+tags:
+  - fiscal
+  - nfe
+  - invoice
+  - tax
+  - brazil
+status: beta
+governance:
+  governedTools:
+    - create_nfe
+endpoints:
+  - name: create_nfe
+    description: "Issue an NFe"
+    descriptionPt: "Emite uma NFe"
+    method: POST
+    path: /nfe
+    governed: true
+    body:
+      - { name: natureza_operacao, type: string, required: true, description: "Operation nature" }
+      - { name: items, type: object, required: true, description: "Invoice items" }
+  - name: get_nfe
+    description: "Get NFe status"
+    descriptionPt: "Consulta status de NFe"
+    method: GET
+    path: /nfe/{ref}
+    params:
+      - { name: ref, type: string, required: true, description: "Reference ID", location: path }
