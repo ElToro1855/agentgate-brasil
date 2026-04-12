@@ -1,0 +1,40 @@
+id: redator-oficial
+name: RedatorOficial
+category: agentes
+subcategory: document
+description: "Official document writer — generates ofícios, pareceres, portarias using real government data"
+descriptionPt: "Redator de documentos oficiais — gera ofícios, pareceres, portarias usando dados governamentais reais"
+baseUrl: ""
+auth:
+  type: none
+  envVars: []
+tags: [agent, documents, official, government, writing, brazil]
+status: alpha
+endpoints:
+  - name: draft_oficio
+    description: "Draft an official letter (ofício) with proper formatting"
+    descriptionPt: "Redige um ofício com formatação adequada"
+    method: POST
+    path: /draft
+    body:
+      - { name: type, type: string, required: true, description: "Document type: oficio, parecer, portaria, despacho" }
+      - { name: subject, type: string, required: true, description: "Document subject" }
+      - { name: body_instructions, type: string, required: true, description: "Instructions for the document body" }
+      - { name: sender, type: string, required: true, description: "Sender name and title" }
+      - { name: recipient, type: string, required: false, description: "Recipient name and title" }
+  - name: format_document
+    description: "Format text into official document structure"
+    descriptionPt: "Formata texto em estrutura de documento oficial"
+    method: POST
+    path: /format
+    body:
+      - { name: text, type: string, required: true, description: "Raw text to format" }
+      - { name: template, type: string, required: true, description: "Template: oficio, parecer, portaria" }
+  - name: validate_document
+    description: "Validate an official document against formatting rules"
+    descriptionPt: "Valida um documento oficial contra regras de formatação"
+    method: POST
+    path: /validate
+    body:
+      - { name: document, type: string, required: true, description: "Document text to validate" }
+      - { name: type, type: string, required: true, description: "Expected document type" }

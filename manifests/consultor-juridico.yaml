@@ -1,0 +1,38 @@
+id: consultor-juridico
+name: ConsultorJuridico
+category: agentes
+subcategory: legal
+description: "Legal consultation agent — jurisprudence search, legal analysis, process tracking"
+descriptionPt: "Agente de consultoria jurídica — busca de jurisprudência, análise legal, acompanhamento processual"
+baseUrl: ""
+auth:
+  type: none
+  envVars: []
+tags: [agent, legal, jurisprudence, courts, law, brazil]
+status: alpha
+endpoints:
+  - name: analyze_case
+    description: "Analyze a legal case based on description and relevant legislation"
+    descriptionPt: "Analisa um caso jurídico com base na descrição e legislação relevante"
+    method: POST
+    path: /analyze
+    body:
+      - { name: description, type: string, required: true, description: "Case description" }
+      - { name: area, type: string, required: true, description: "Legal area: civil, criminal, labor, tax, administrative" }
+  - name: search_precedents
+    description: "Search relevant legal precedents for a case"
+    descriptionPt: "Busca precedentes legais relevantes para um caso"
+    method: POST
+    path: /precedents
+    body:
+      - { name: topic, type: string, required: true, description: "Legal topic to search" }
+      - { name: courts, type: string, required: false, description: "Comma-separated court codes (STF, STJ, TST)" }
+  - name: calculate_deadlines
+    description: "Calculate procedural deadlines"
+    descriptionPt: "Calcula prazos processuais"
+    method: POST
+    path: /deadlines
+    body:
+      - { name: event_date, type: string, required: true, description: "Event date (YYYY-MM-DD)" }
+      - { name: deadline_type, type: string, required: true, description: "Type: recurso, contestacao, apelacao" }
+      - { name: court, type: string, required: true, description: "Court code" }

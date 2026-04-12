@@ -1,0 +1,36 @@
+id: monitor-compliance
+name: MonitorCompliance
+category: agentes
+subcategory: compliance
+description: "Compliance monitoring agent — tracks governance audit logs, policy violations, risk alerts"
+descriptionPt: "Agente de monitoramento de compliance — acompanha logs de governança, violações de política, alertas de risco"
+baseUrl: ""
+auth:
+  type: none
+  envVars: []
+tags: [agent, compliance, monitoring, governance, risk, brazil]
+status: alpha
+endpoints:
+  - name: check_entity
+    description: "Run compliance checks on a company (sanctions, lawsuits, tax status)"
+    descriptionPt: "Executa verificações de compliance em uma empresa (sanções, processos, situação fiscal)"
+    method: POST
+    path: /check
+    body:
+      - { name: cnpj, type: string, required: true, description: "Company CNPJ" }
+      - { name: checks, type: object, required: false, description: "Specific checks to run (sanctions, lawsuits, tax)" }
+  - name: generate_report
+    description: "Generate a compliance report for an entity"
+    descriptionPt: "Gera relatório de compliance para uma entidade"
+    method: POST
+    path: /report
+    body:
+      - { name: cnpj, type: string, required: true, description: "Company CNPJ" }
+      - { name: period, type: string, required: false, description: "Report period (e.g., 2026-Q1)" }
+  - name: list_alerts
+    description: "List compliance alerts and risk signals"
+    descriptionPt: "Lista alertas de compliance e sinais de risco"
+    method: GET
+    path: /alerts
+    params:
+      - { name: severity, type: string, required: false, description: "Filter: low, medium, high, critical", location: query }

@@ -1,0 +1,24 @@
+{
+  "name": "@agentgate/brasil-lite",
+  "version": "0.1.0",
+  "description": "AgentGate Brasil Lite — free, no-auth MCP server for Brazilian public data",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "agentgate-brasil-lite": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@agentgate/framework": "workspace:*",
+    "@agentgate/discovery": "workspace:*",
+    "@agentgate/meta-tools": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "license": "MIT"
+}

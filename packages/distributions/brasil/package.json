@@ -1,0 +1,27 @@
+{
+  "name": "@agentgate/brasil",
+  "version": "0.1.0",
+  "description": "AgentGate Brasil — complete MCP server suite for AI agents operating in Brazil",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "agentgate-brasil": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@agentgate/framework": "workspace:*",
+    "@agentgate/discovery": "workspace:*",
+    "@agentgate/meta-tools": "workspace:*",
+    "@agentgate/governance": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  },
+  "license": "MIT"
+}

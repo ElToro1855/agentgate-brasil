@@ -1,0 +1,47 @@
+id: analista-fiscal
+name: AnalistaFiscal
+category: agentes
+subcategory: tax
+description: "Tax analysis agent — Simples Nacional calculation, tax regime comparison, DRE generation"
+descriptionPt: "Agente de análise fiscal — cálculo Simples Nacional, comparação de regimes, geração de DRE"
+baseUrl: ""
+auth:
+  type: none
+  envVars: []
+tags: [agent, tax, fiscal, simples-nacional, dre, brazil]
+status: alpha
+endpoints:
+  - name: calculate_simples
+    description: "Calculate Simples Nacional tax for a company"
+    descriptionPt: "Calcula imposto Simples Nacional para uma empresa"
+    method: POST
+    path: /simples
+    body:
+      - { name: revenue_12m, type: number, required: true, description: "Last 12 months revenue (BRL)" }
+      - { name: cnae, type: string, required: true, description: "Primary CNAE code" }
+      - { name: payroll_ratio, type: number, required: false, description: "Payroll/revenue ratio (for Factor R)" }
+  - name: compare_regimes
+    description: "Compare tax regimes (Simples, Lucro Presumido, Lucro Real)"
+    descriptionPt: "Compara regimes tributários (Simples, Lucro Presumido, Lucro Real)"
+    method: POST
+    path: /compare
+    body:
+      - { name: revenue_12m, type: number, required: true, description: "Annual revenue" }
+      - { name: cnae, type: string, required: true, description: "CNAE code" }
+      - { name: expenses, type: number, required: false, description: "Total deductible expenses" }
+  - name: generate_dre
+    description: "Generate a simplified DRE (income statement)"
+    descriptionPt: "Gera uma DRE simplificada (demonstração de resultado)"
+    method: POST
+    path: /dre
+    body:
+      - { name: revenue, type: number, required: true, description: "Gross revenue" }
+      - { name: costs, type: number, required: true, description: "Cost of goods/services" }
+      - { name: expenses, type: object, required: true, description: "Expense breakdown" }
+  - name: lookup_cnae
+    description: "Look up CNAE code details and tax implications"
+    descriptionPt: "Busca detalhes de código CNAE e implicações tributárias"
+    method: GET
+    path: /cnae/{code}
+    params:
+      - { name: code, type: string, required: true, description: "CNAE code (7 digits)", location: path }
