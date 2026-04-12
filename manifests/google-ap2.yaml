@@ -1,0 +1,55 @@
+id: google-ap2
+name: GoogleAP2
+category: commerce
+subcategory: protocols
+description: "Google Agent Payments Protocol v2 — HMAC-mandated agent-to-merchant payments"
+descriptionPt: "Google Agent Payments Protocol v2 — pagamentos mandatados por HMAC de agente para comerciante"
+baseUrl: https://agentpayments.googleapis.com/v2
+auth:
+  type: bearer
+  envVars:
+    - GOOGLE_AP2_API_KEY
+tags: [google, ap2, agent-payments, hmac, commerce]
+status: alpha
+governance:
+  governedTools:
+    - ap2_create_mandate
+    - ap2_execute_payment
+endpoints:
+  - name: ap2_create_mandate
+    description: "Create an HMAC payment mandate for an agent"
+    descriptionPt: "Cria um mandato de pagamento HMAC para um agente"
+    method: POST
+    path: /mandates
+    governed: true
+    body:
+      - { name: agent_id, type: string, required: true, description: "Agent identifier" }
+      - { name: merchant_id, type: string, required: true, description: "Merchant identifier" }
+      - { name: max_amount, type: number, required: true, description: "Maximum authorized amount" }
+      - { name: currency, type: string, required: true, description: "Currency code" }
+      - { name: valid_until, type: string, required: true, description: "Mandate expiry (ISO 8601)" }
+  - name: ap2_execute_payment
+    description: "Execute a payment under an existing mandate. GOVERNED."
+    descriptionPt: "Executa um pagamento sob um mandato existente. GOVERNADO."
+    method: POST
+    path: /mandates/{mandate_id}/payments
+    governed: true
+    params:
+      - { name: mandate_id, type: string, required: true, description: "Mandate ID", location: path }
+    body:
+      - { name: amount, type: number, required: true, description: "Payment amount" }
+      - { name: description, type: string, required: false, description: "Payment description" }
+  - name: ap2_get_mandate
+    description: "Get mandate details and remaining balance"
+    descriptionPt: "Busca detalhes do mandato e saldo restante"
+    method: GET
+    path: /mandates/{mandate_id}
+    params:
+      - { name: mandate_id, type: string, required: true, description: "Mandate ID", location: path }
+  - name: ap2_list_payments
+    description: "List payments under a mandate"
+    descriptionPt: "Lista pagamentos sob um mandato"
+    method: GET
+    path: /mandates/{mandate_id}/payments
+    params:
+      - { name: mandate_id, type: string, required: true, description: "Mandate ID", location: path }

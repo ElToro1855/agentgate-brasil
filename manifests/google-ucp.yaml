@@ -1,0 +1,57 @@
+id: google-ucp
+name: GoogleUCP
+category: commerce
+subcategory: protocols
+description: "Google Universal Commerce Protocol — standardized product search, compare, purchase across merchants"
+descriptionPt: "Google Universal Commerce Protocol — busca, comparação e compra de produtos padronizada entre comerciantes"
+baseUrl: https://commerce.googleapis.com/v1
+auth:
+  type: bearer
+  envVars:
+    - GOOGLE_UCP_API_KEY
+tags: [google, ucp, commerce, shopping, products]
+status: alpha
+governance:
+  governedTools:
+    - ucp_purchase
+endpoints:
+  - name: ucp_search_products
+    description: "Search products across UCP merchants"
+    descriptionPt: "Busca produtos em comerciantes UCP"
+    method: GET
+    path: /products/search
+    params:
+      - { name: query, type: string, required: true, description: "Product search query", location: query }
+      - { name: max_results, type: number, required: false, description: "Max results", location: query }
+  - name: ucp_get_product
+    description: "Get product details by ID"
+    descriptionPt: "Busca detalhes de produto por ID"
+    method: GET
+    path: /products/{product_id}
+    params:
+      - { name: product_id, type: string, required: true, description: "Product ID", location: path }
+  - name: ucp_compare_prices
+    description: "Compare prices across merchants for a product"
+    descriptionPt: "Compara preços entre comerciantes para um produto"
+    method: GET
+    path: /products/{product_id}/offers
+    params:
+      - { name: product_id, type: string, required: true, description: "Product ID", location: path }
+  - name: ucp_purchase
+    description: "Purchase a product through UCP. GOVERNED."
+    descriptionPt: "Compra um produto via UCP. GOVERNADO."
+    method: POST
+    path: /orders
+    governed: true
+    body:
+      - { name: product_id, type: string, required: true, description: "Product ID" }
+      - { name: offer_id, type: string, required: true, description: "Offer ID from compare" }
+      - { name: quantity, type: number, required: true, description: "Quantity" }
+      - { name: shipping_address, type: object, required: true, description: "Shipping address" }
+  - name: ucp_get_order
+    description: "Get order status"
+    descriptionPt: "Busca status de pedido"
+    method: GET
+    path: /orders/{order_id}
+    params:
+      - { name: order_id, type: string, required: true, description: "Order ID", location: path }

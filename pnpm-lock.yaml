@@ -250,7 +250,64 @@ importers:
         specifier: ^4.1.0
         version: 4.1.4(vite@8.0.8(yaml@2.8.3))
 
+  packages/features/commerce/protocols/google-ap2:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/protocols/google-ucp:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
   packages/features/commerce/protocols/stripe-acp:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/protocols/x402:
     dependencies:
       '@agentgate/framework':
         specifier: workspace:*

@@ -1,7 +1,24 @@
 import type { ApiManifest, GeneratedFile, ApiParam } from "./types.js";
 
 function toToolName(featureId: string, endpointName: string): string {
-  return `${featureId}_${endpointName}`.replace(/-/g, "_");
+  const prefix = featureId.replace(/-/g, "_");
+  // Avoid double-prefix when endpoint name already begins with the full prefix.
+  if (endpointName.startsWith(prefix + "_") || endpointName === prefix) {
+    return endpointName;
+  }
+  // Also avoid double-prefix when the endpoint name already begins with a
+  // trailing sub-segment of the feature prefix (e.g. endpoint "ucp_search"
+  // already carries the meaningful part of feature id "google-ucp").
+  const segments = prefix.split("_");
+  for (let i = 1; i < segments.length; i++) {
+    const trailingSuffix = segments.slice(i).join("_");
+    if (endpointName.startsWith(trailingSuffix + "_") || endpointName === trailingSuffix) {
+      // Prepend only the leading part that is not duplicated
+      const leadingPart = segments.slice(0, i).join("_");
+      return `${leadingPart}_${endpointName}`;
+    }
+  }
+  return `${prefix}_${endpointName}`;
 }
 
 function zodType(param: ApiParam): string {
@@ -71,7 +88,7 @@ export function generateFeature(manifest: ApiManifest): GeneratedFile[] {
 
     const bodyArg = hasBody ? `,\n      body: JSON.stringify(params)` : "";
     const queryStr = queryParams.length > 0
-      ? `\n    const query = new URLSearchParams();\n${queryParams.map((q) => `    if (params.${q.name} !== undefined) query.set("${q.name}", String(params.${q.name}));`).join("\n")}\n    const url = \`${pathExpr}?\${query}\`;`
+      ? `\n    const basePath = ${pathExpr};\n    const query = new URLSearchParams();\n${queryParams.map((q) => `    if (params.${q.name} !== undefined) query.set("${q.name}", String(params.${q.name}));`).join("\n")}\n    const url = \`\${basePath}?\${query}\`;`
       : `\n    const url = ${pathExpr};`;
 
     return `  async ${ep.name}(params: Record<string, any> = {}): Promise<any> {${queryStr}
