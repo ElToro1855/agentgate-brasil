@@ -128,6 +128,195 @@ importers:
       '@agentgate/governance':
         specifier: workspace:*
         version: link:../../core/governance
+      '@agentgate/mcp-99':
+        specifier: workspace:*
+        version: link:../../features/commerce/consumer/ninety-nine
+      '@agentgate/mcp-amazon-br':
+        specifier: workspace:*
+        version: link:../../features/commerce/consumer/amazon-br
+      '@agentgate/mcp-ana':
+        specifier: workspace:*
+        version: link:../../features/data/environmental/ana
+      '@agentgate/mcp-analista-fiscal':
+        specifier: workspace:*
+        version: link:../../features/agentes/tax/analista-fiscal
+      '@agentgate/mcp-asaas':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/asaas
+      '@agentgate/mcp-b3':
+        specifier: workspace:*
+        version: link:../../features/data/economic/b3
+      '@agentgate/mcp-bacen':
+        specifier: workspace:*
+        version: link:../../features/data/economic/bacen
+      '@agentgate/mcp-bling':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-erp/bling
+      '@agentgate/mcp-brasil-api':
+        specifier: workspace:*
+        version: link:../../features/data/identity/brasil-api
+      '@agentgate/mcp-camara':
+        specifier: workspace:*
+        version: link:../../features/data/legislative/camara
+      '@agentgate/mcp-celcoin':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/celcoin
+      '@agentgate/mcp-cielo':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/cielo
+      '@agentgate/mcp-cnes':
+        specifier: workspace:*
+        version: link:../../features/data/health/cnes
+      '@agentgate/mcp-compras-gov':
+        specifier: workspace:*
+        version: link:../../features/data/public-procurement/compras-gov
+      '@agentgate/mcp-consultor-juridico':
+        specifier: workspace:*
+        version: link:../../features/agentes/legal/consultor-juridico
+      '@agentgate/mcp-conta-azul':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-fiscal/conta-azul
+      '@agentgate/mcp-correios':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-logistics/correios
+      '@agentgate/mcp-datajud':
+        specifier: workspace:*
+        version: link:../../features/data/judicial/datajud
+      '@agentgate/mcp-datasus':
+        specifier: workspace:*
+        version: link:../../features/data/health/datasus
+      '@agentgate/mcp-diario-oficial':
+        specifier: workspace:*
+        version: link:../../features/data/legislative/diario-oficial
+      '@agentgate/mcp-ebanx':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/ebanx
+      '@agentgate/mcp-efi':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/efi
+      '@agentgate/mcp-evolution-api':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-communication/evolution-api
+      '@agentgate/mcp-focus-nfe':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-fiscal/focus-nfe
+      '@agentgate/mcp-google-ap2':
+        specifier: workspace:*
+        version: link:../../features/commerce/protocols/google-ap2
+      '@agentgate/mcp-google-ucp':
+        specifier: workspace:*
+        version: link:../../features/commerce/protocols/google-ucp
+      '@agentgate/mcp-ibge':
+        specifier: workspace:*
+        version: link:../../features/data/economic/ibge
+      '@agentgate/mcp-ifood':
+        specifier: workspace:*
+        version: link:../../features/commerce/consumer/ifood
+      '@agentgate/mcp-inpe':
+        specifier: workspace:*
+        version: link:../../features/data/environmental/inpe
+      '@agentgate/mcp-iugu':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/iugu
+      '@agentgate/mcp-jurisprudencia':
+        specifier: workspace:*
+        version: link:../../features/data/judicial/jurisprudencia
+      '@agentgate/mcp-magalu':
+        specifier: workspace:*
+        version: link:../../features/commerce/consumer/magalu
+      '@agentgate/mcp-melhor-envio':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-logistics/melhor-envio
+      '@agentgate/mcp-mercado-bitcoin':
+        specifier: workspace:*
+        version: link:../../features/commerce/crypto/mercado-bitcoin
+      '@agentgate/mcp-mercado-livre':
+        specifier: workspace:*
+        version: link:../../features/commerce/consumer/mercado-livre
+      '@agentgate/mcp-monitor-compliance':
+        specifier: workspace:*
+        version: link:../../features/agentes/compliance/monitor-compliance
+      '@agentgate/mcp-mpp-tempo':
+        specifier: workspace:*
+        version: link:../../features/commerce/protocols/mpp-tempo
+      '@agentgate/mcp-nuvem-fiscal':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-fiscal/nuvem-fiscal
+      '@agentgate/mcp-omie':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-erp/omie
+      '@agentgate/mcp-open-finance':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-banking/open-finance
+      '@agentgate/mcp-pagar-me':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/pagar-me
+      '@agentgate/mcp-pagseguro':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/pagseguro
+      '@agentgate/mcp-pncp':
+        specifier: workspace:*
+        version: link:../../features/data/public-procurement/pncp
+      '@agentgate/mcp-portal-transparencia':
+        specifier: workspace:*
+        version: link:../../features/data/transparency/portal-transparencia
+      '@agentgate/mcp-rappi':
+        specifier: workspace:*
+        version: link:../../features/commerce/consumer/rappi
+      '@agentgate/mcp-rd-station':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-communication/rd-station
+      '@agentgate/mcp-receita-federal':
+        specifier: workspace:*
+        version: link:../../features/data/identity/receita-federal
+      '@agentgate/mcp-redator-oficial':
+        specifier: workspace:*
+        version: link:../../features/agentes/document/redator-oficial
+      '@agentgate/mcp-senado':
+        specifier: workspace:*
+        version: link:../../features/data/legislative/senado
+      '@agentgate/mcp-serpro':
+        specifier: workspace:*
+        version: link:../../features/data/identity/serpro
+      '@agentgate/mcp-stark-bank':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-banking/stark-bank
+      '@agentgate/mcp-stone':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/stone
+      '@agentgate/mcp-stripe-acp':
+        specifier: workspace:*
+        version: link:../../features/commerce/protocols/stripe-acp
+      '@agentgate/mcp-take-blip':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-communication/take-blip
+      '@agentgate/mcp-tcu':
+        specifier: workspace:*
+        version: link:../../features/data/transparency/tcu
+      '@agentgate/mcp-tiny':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-erp/tiny
+      '@agentgate/mcp-tse':
+        specifier: workspace:*
+        version: link:../../features/data/electoral/tse
+      '@agentgate/mcp-vindi':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/vindi
+      '@agentgate/mcp-vtex':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-logistics/vtex
+      '@agentgate/mcp-x402':
+        specifier: workspace:*
+        version: link:../../features/commerce/protocols/x402
+      '@agentgate/mcp-z-api':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-communication/z-api
+      '@agentgate/mcp-zenvia':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-communication/zenvia
+      '@agentgate/mcp-zoop':
+        specifier: workspace:*
+        version: link:../../features/commerce/br-payments/zoop
       '@agentgate/meta-tools':
         specifier: workspace:*
         version: link:../../core/meta-tools
@@ -870,6 +1059,25 @@ importers:
         version: 4.1.4(vite@8.0.8(yaml@2.8.3))
 
   packages/features/commerce/protocols/google-ucp:
+    dependencies:
+      '@agentgate/framework':
+        specifier: workspace:*
+        version: link:../../../../core/framework
+      '@agentgate/governance':
+        specifier: workspace:*
+        version: link:../../../../core/governance
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.0
+        version: 4.1.4(vite@8.0.8(yaml@2.8.3))
+
+  packages/features/commerce/protocols/mpp-tempo:
     dependencies:
       '@agentgate/framework':
         specifier: workspace:*

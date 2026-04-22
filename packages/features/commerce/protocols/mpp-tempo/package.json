@@ -1,0 +1,41 @@
+{
+  "name": "@agentgate/mcp-mpp-tempo",
+  "version": "0.1.0",
+  "description": "Machine Payments Protocol (MPP) on Tempo — PIX payouts for AI agents via OZAV's regulated LatAm corridor",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run --passWithNoTests",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@agentgate/framework": "workspace:*",
+    "@agentgate/governance": "workspace:*",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  },
+  "keywords": [
+    "mcp",
+    "mpp",
+    "tempo",
+    "pix",
+    "agentgate",
+    "agentic-payments",
+    "brazil",
+    "latam",
+    "stablecoin"
+  ],
+  "license": "MIT"
+}
